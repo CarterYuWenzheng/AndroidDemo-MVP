@@ -1,7 +1,5 @@
-package com.carter.javaAndroid.modules.main;
+package com.carter.javaAndroid.modules.main.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,7 +25,7 @@ import butterknife.OnClick;
 
 import static com.carter.javaAndroid.Application.MyApplication.getContext;
 
-@Route(path = ARouterPath.Main.MAIN_ACTIVITY)
+@Route(path = ARouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<MainActivityPresenter> implements MainActivityContract.View {
 
     @Override

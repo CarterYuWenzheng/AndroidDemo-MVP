@@ -60,7 +60,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     }
 
     private void goToMainActivity() {
-        ARouter.getInstance().build(ARouterPath.Main.MAIN_ACTIVITY).navigation();
+        ARouter.getInstance().build(ARouterPath.MAIN_ACTIVITY).navigation();
     }
 
     private void goToRegister() {

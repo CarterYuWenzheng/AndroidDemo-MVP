@@ -1,8 +1,6 @@
 package com.carter.javaAndroid.modules.login.ui;
 
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
