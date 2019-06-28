@@ -11,6 +11,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.activity.BaseActivity;
 import com.carter.javaAndroid.core.constant.ARouterPath;
+import com.carter.javaAndroid.core.event.LoginEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -69,6 +72,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         @Override
         public void onFinish() {
             ARouter.getInstance().build(ARouterPath.MAIN_ACTIVITY).navigation();
+            EventBus.getDefault().postSticky(new LoginEvent("EventBus: 我从Splash来"));
             finish();
         }
     };
@@ -79,10 +83,19 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             case R.id.btnJump:
                 countDownTimer.cancel();
                 ARouter.getInstance().build(ARouterPath.MAIN_ACTIVITY).navigation();
+                EventBus.getDefault().postSticky(new LoginEvent("EventBus: 我从Splash来"));
                 finish();
                 break;
                 default:
                     break;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (countDownTimer != null){
+            countDownTimer = null;
         }
     }
 }

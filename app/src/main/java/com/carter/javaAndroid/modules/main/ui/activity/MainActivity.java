@@ -48,32 +48,13 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
     }
 
-    @OnClick({R.id.btnTestRoom, R.id.btnTestRoom2})
+    @OnClick({})
     void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnTestRoom:
-                testRoom();
-                break;
-            case R.id.btnTestRoom2:
-                testRoom2();
-                break;
+
             default:
                 break;
         }
-    }
-
-    private void testRoom2() {
-        List<User> users = MyDatabase.create(this).getUserDao().getAllUser();
-
-    }
-
-    private void testRoom() {
-        User user = new User();
-        user.setId(10001);
-        user.setName("小明");
-        user.setPassword("111111");
-        MyDatabase.create(this).getUserDao().insert(user);
-        Toast.makeText(this, "测试类数据库", Toast.LENGTH_LONG).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
