@@ -2,6 +2,7 @@ package com.carter.javaAndroid.modules.main.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.Toast;
@@ -15,8 +16,12 @@ import com.carter.javaAndroid.core.db.MyDatabase;
 import com.carter.javaAndroid.core.db.bean.User;
 import com.carter.javaAndroid.core.event.LoginEvent;
 import com.carter.javaAndroid.modules.homepager.ui.HomePagerFragment;
+import com.carter.javaAndroid.modules.knowledge.ui.KnowledgeFragment;
 import com.carter.javaAndroid.modules.main.contract.MainActivityContract;
 import com.carter.javaAndroid.modules.main.presenter.MainActivityPresenter;
+import com.carter.javaAndroid.modules.navigation.ui.NavigationFragment;
+import com.carter.javaAndroid.modules.project.ui.ProjectFragment;
+import com.carter.javaAndroid.modules.wxarticle.ui.WxArticleFragment;
 import com.carter.javaAndroid.utils.ToastUtils;
 
 
@@ -26,6 +31,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 import static com.carter.javaAndroid.Application.MyApplication.getContext;
@@ -33,7 +39,14 @@ import static com.carter.javaAndroid.Application.MyApplication.getContext;
 @Route(path = ARouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<MainActivityPresenter> implements MainActivityContract.View {
 
+    @BindView(R.id.bottom_navigation_view)
+    BottomNavigationView bottomNavigationView;
+
     private HomePagerFragment homePagerFragment;
+    private KnowledgeFragment knowledgeFragment;
+    private NavigationFragment navigationFragment;
+    private WxArticleFragment wxArticleFragment;
+    private ProjectFragment projectFragment;
     private int mLastFragmentIndex = -1;
     private int mCurrentFragmentIndex = 0;
 
@@ -55,6 +68,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     protected void initView() {
         EventBus.getDefault().register(this);
         showFragment(mCurrentFragmentIndex);
+        initButtonNavigationView();
     }
 
     private void showFragment(int index) {
@@ -70,9 +84,38 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 }
                 fragmentTransaction.show(homePagerFragment);
                 break;
+            case Constants.FRAGMENT_KNOWLEDGE:
+                if (knowledgeFragment == null) {
+                    knowledgeFragment = KnowledgeFragment.newInstance();
+                    fragmentTransaction.add(R.id.fragment_layout, knowledgeFragment);
+                }
+                fragmentTransaction.show(knowledgeFragment);
+                break;
+            case Constants.FRAGMENT_NAVIGATION:
+                if (navigationFragment == null) {
+                    navigationFragment = NavigationFragment.newInstance();
+                    fragmentTransaction.add(R.id.fragment_layout, navigationFragment);
+                }
+                fragmentTransaction.show(navigationFragment);
+                break;
+            case Constants.FRAGMENT_WX_ARTICLE:
+                if (wxArticleFragment == null) {
+                    wxArticleFragment = WxArticleFragment.newInstance();
+                    fragmentTransaction.add(R.id.fragment_layout, wxArticleFragment);
+                }
+                fragmentTransaction.show(wxArticleFragment);
+                break;
+            case Constants.FRAGMENT_PROJECT:
+                if (projectFragment == null) {
+                    projectFragment = ProjectFragment.newInstance();
+                    fragmentTransaction.add(R.id.fragment_layout, projectFragment);
+                }
+                fragmentTransaction.show(projectFragment);
+                break;
             default:
                 break;
         }
+        fragmentTransaction.commit();
     }
 
     private void hintFragment(FragmentTransaction fragmentTransaction) {
@@ -80,6 +123,26 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
             case Constants.FRAGMENT_HOME_PAGER:
                 if (homePagerFragment != null) {
                     fragmentTransaction.hide(homePagerFragment);
+                }
+                break;
+            case Constants.FRAGMENT_KNOWLEDGE:
+                if (knowledgeFragment != null) {
+                    fragmentTransaction.hide(knowledgeFragment);
+                }
+                break;
+            case Constants.FRAGMENT_NAVIGATION:
+                if (navigationFragment != null) {
+                    fragmentTransaction.hide(navigationFragment);
+                }
+                break;
+            case Constants.FRAGMENT_WX_ARTICLE:
+                if (wxArticleFragment != null) {
+                    fragmentTransaction.hide(wxArticleFragment);
+                }
+                break;
+            case Constants.FRAGMENT_PROJECT:
+                if (projectFragment != null) {
+                    fragmentTransaction.hide(projectFragment);
                 }
                 break;
             default:
@@ -100,6 +163,31 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     @Override
     protected void initEventAndData() {
 
+    }
+
+    private void initButtonNavigationView() {
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.tab_main:
+                    showFragment(Constants.FRAGMENT_HOME_PAGER);
+                    break;
+                case R.id.tab_knowledge:
+                    showFragment(Constants.FRAGMENT_KNOWLEDGE);
+                    break;
+                case R.id.tab_navigation:
+                    showFragment(Constants.FRAGMENT_NAVIGATION);
+                    break;
+                case R.id.tab_wx_article:
+                    showFragment(Constants.FRAGMENT_WX_ARTICLE);
+                    break;
+                case R.id.tab_project:
+                    showFragment(Constants.FRAGMENT_PROJECT);
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        });
     }
 
     @OnClick({})

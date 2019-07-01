@@ -1,11 +1,7 @@
 package com.carter.javaAndroid.modules.homepager.ui;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.fragment.BaseFragment;
-import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.homepager.contract.HomePagerContract;
 import com.carter.javaAndroid.modules.homepager.presenter.HomePagerPresenter;
 
