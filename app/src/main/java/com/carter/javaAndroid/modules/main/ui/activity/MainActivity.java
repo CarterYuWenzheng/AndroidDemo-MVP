@@ -73,9 +73,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
     private void showFragment(int index) {
         mCurrentFragmentIndex = index;
-        mLastFragmentIndex = index;
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         hintFragment(fragmentTransaction);
+        mLastFragmentIndex = index;
         switch (index) {
             case Constants.FRAGMENT_HOME_PAGER:
                 if (homePagerFragment == null) {
