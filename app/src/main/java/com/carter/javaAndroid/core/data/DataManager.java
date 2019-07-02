@@ -4,7 +4,12 @@ import com.carter.javaAndroid.core.http.BaseResponse;
 import com.carter.javaAndroid.core.http.HttpImpl;
 import com.carter.javaAndroid.core.http.IHttp;
 import com.carter.javaAndroid.core.preference.IPreference;
+import com.carter.javaAndroid.modules.homepager.banner.BannerData;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 
@@ -52,5 +57,20 @@ public class DataManager implements IHttp, IPreference {
     @Override
     public boolean isNightMode() {
         return mIPreference.isNightMode();
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getArticleList(int pageNum) {
+        return mIHttp.getArticleList(pageNum);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<BannerData>>> getBannerData() {
+        return mIHttp.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles() {
+        return mIHttp.getTopArticles();
     }
 }

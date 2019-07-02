@@ -1,17 +1,48 @@
 package com.carter.javaAndroid.core.http.api;
 
 import com.carter.javaAndroid.core.http.BaseResponse;
+import com.carter.javaAndroid.modules.homepager.banner.BannerData;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
     String BASE_URL = "https://www.wanandroid.com/";
 
+    /**
+     * 获取文章列表
+     * https://www.wanandroid.com/article/list/0/json
+     *
+     * @param pageNum
+     */
+    @GET("article/list/{pageNum}/json")
+    Observable<BaseResponse<ArticleListBean>> getArticleList(@Path("pageNum") int pageNum);
+
+    /**
+     * 广告栏
+     * https://www.wanandroid.com/banner/json
+     *
+     * @return 广告栏数据
+     */
+    @GET("banner/json")
+    Observable<BaseResponse<List<BannerData>>> getBannerData();
+
+    /**
+     * 获取首页置顶文章列表
+     * https://www.wanandroid.com/article/top/json
+     */
+    @GET("article/top/json")
+    Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles();
 
     /**
      * 登录

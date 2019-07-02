@@ -87,10 +87,12 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
 
     private void initRefreshLayout() {
         smartRefreshLayout.setOnRefreshListener(refreshLayout -> {
-
+            mPresenter.refreshLayout(false);
+            refreshLayout.finishRefresh();
         });
         smartRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
-
+            mPresenter.loadMore();
+            refreshLayout.finishLoadMore();
         });
     }
 
@@ -117,7 +119,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
             mBannerTitleList.add(bannerData.getTitle());
             mBannerIdList.add(bannerData.getId());
             mBannerUrlList.add(bannerData.getUrl());
-            mBannerUrlList.add(bannerData.getImagePath());
+            mBannerImageList.add(bannerData.getImagePath());
         }
         //设置banner样式
         banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE);

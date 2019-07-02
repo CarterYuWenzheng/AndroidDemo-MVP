@@ -3,7 +3,12 @@ package com.carter.javaAndroid.core.http;
 
 
 import com.carter.javaAndroid.core.http.api.ApiService;
+import com.carter.javaAndroid.modules.homepager.banner.BannerData;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,5 +26,20 @@ public class HttpImpl implements IHttp {
     @Override
     public Observable<BaseResponse<LoginData>> login(String username, String password) {
         return mApiService.login(username,password);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getArticleList(int pageNum) {
+        return mApiService.getArticleList(pageNum);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<BannerData>>> getBannerData() {
+        return mApiService.getBannerData();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles() {
+        return mApiService.getTopArticles();
     }
 }
