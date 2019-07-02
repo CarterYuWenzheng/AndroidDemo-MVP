@@ -46,6 +46,9 @@ dependencies {
     //ui
     implementation rootProject.ext.dependencies["statusbar"]//沉浸式状态栏
     implementation rootProject.ext.dependencies["multipleStatusView"]//多状态的自定义view
+    implementation rootProject.ext.dependencies["SmartRefreshLayout"]
+    implementation rootProject.ext.dependencies["SmartRefreshHeader"]
+    implementation rootProject.ext.dependencies["banner"]
 
     //di
     implementation rootProject.ext.dependencies["dagger2"]
@@ -87,6 +90,7 @@ dependencies {
     implementation rootProject.ext.dependencies["androideventbus"]
     implementation rootProject.ext.dependencies["arouter-api"]//ARouter
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+    implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
 
     //room数据库
     implementation rootProject.ext.dependencies["room-runtime"]

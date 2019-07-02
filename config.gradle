@@ -39,6 +39,9 @@ ext {
             //ui
             "statusbar"                         : "com.gyf.immersionbar:immersionbar:2.3.3",
             "multipleStatusView"                : "com.classic.common:multiple-status-view:1.6",
+            "SmartRefreshLayout"                :"com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
+            "SmartRefreshHeader"                : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
+            "banner"                            : "com.youth.banner:banner:1.4.10",
 
             //di
             "dagger2"                            : "com.google.dagger:dagger:${version["dagger2Version"]}",
@@ -77,6 +80,7 @@ ext {
 
             //tools
             "PersistentCookieJar"               : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
+            "BaseRecyclerViewAdapterHelper"     : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46",
             "fragmentation"                     : "me.yokeyword:fragmentation:${version["fragmentationVersion"]}",
             "fragmentation-swipeback"           : "me.yokeyword:fragmentation-swipeback:${version["fragmentationVersion"]}",
             "androideventbus"                   : "org.greenrobot:eventbus:${version["eventbusVersion"]}",
