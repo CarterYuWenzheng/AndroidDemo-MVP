@@ -30,9 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/bottom_nav_bg"
             app:elevation="16dp"
             app:itemIconTint="@drawable/nav_item_color_selector"
             app:itemTextColor="@drawable/nav_item_color_selector"
+            app:layout_behavior="@string/bye_burger_bottom_behavior"
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_navigation" />
 

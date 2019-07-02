@@ -86,6 +86,7 @@ ext {
             "androideventbus"                   : "org.greenrobot:eventbus:${version["eventbusVersion"]}",
             "arouter-api"                       : "com.alibaba:arouter-api:${version["aRouterAPIVersion"]}",
             "arouter-compiler"                  : "com.alibaba:arouter-compiler:${version["aRouterCompilerVersion"]}",
+            "ByeBurger"                         : "com.github.githubwing:ByeBurger:1.2.3",
 
             //room
             "room-runtime"                      :"android.arch.persistence.room:runtime:${version['roomVersion']}",

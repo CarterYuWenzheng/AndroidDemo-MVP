@@ -91,6 +91,7 @@ dependencies {
     implementation rootProject.ext.dependencies["arouter-api"]//ARouter
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     implementation rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+    implementation rootProject.ext.dependencies["ByeBurger"]
 
     //room数据库
     implementation rootProject.ext.dependencies["room-runtime"]
