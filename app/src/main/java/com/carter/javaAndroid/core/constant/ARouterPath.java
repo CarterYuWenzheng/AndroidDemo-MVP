@@ -8,4 +8,6 @@ public class ARouterPath {
 
     public static final String LOGIN_ACTIVITY = "/app/loginActivity";
 
+    public static final String ARTICLE_DETAIL_ACTIVITY = "/app/articleDetailActivity";
+
 }

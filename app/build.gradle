@@ -49,6 +49,7 @@ dependencies {
     implementation rootProject.ext.dependencies["SmartRefreshLayout"]
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["banner"]
+    implementation rootProject.ext.dependencies["agentweb"]//WebView
 
     //di
     implementation rootProject.ext.dependencies["dagger2"]

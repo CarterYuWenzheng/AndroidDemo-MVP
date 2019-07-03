@@ -5,8 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.fragment.BaseFragment;
+import com.carter.javaAndroid.core.constant.ARouterPath;
 import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
 import com.carter.javaAndroid.modules.homepager.banner.BannerGlideImageLoader;
@@ -14,7 +16,6 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.homepager.contract.HomePagerContract;
 import com.carter.javaAndroid.modules.homepager.presenter.HomePagerPresenter;
-import com.carter.javaAndroid.utils.CommonUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -78,7 +79,19 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
 
 
     private void startArticleDetailActivity(int position) {
-
+        if (adapter.getData().size() <= 0 || adapter.getData().size() < position) {
+            return;
+        }
+        ArticleItemBean itemBean = adapter.getData().get(position);
+        ARouter.getInstance().build(ARouterPath.ARTICLE_DETAIL_ACTIVITY)
+                .withInt(Constants.ARTICLE_ID, itemBean.getId())
+                .withString(Constants.ARTICLE_TITLE, itemBean.getTitle())
+                .withString(Constants.ARTICLE_LINK, itemBean.getLink())
+                .withBoolean(Constants.IS_COLLECTED, itemBean.isCollect())
+                .withBoolean(Constants.IS_SHOW_COLLECT_ICON, true)
+                .withInt(Constants.ARTICLE_ITEM_POSITION, position)
+                .withString(Constants.EVENT_BUS_TAG, Constants.MAIN_PAGER)
+                .navigation();
     }
 
     private void clickChildEvent(View view, int position) {
@@ -115,7 +128,7 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
         mBannerIdList = new ArrayList<>();
         mBannerUrlList = new ArrayList<>();
         mBannerImageList = new ArrayList<>();
-        for(BannerData bannerData:bannerDataList){
+        for (BannerData bannerData : bannerDataList) {
             mBannerTitleList.add(bannerData.getTitle());
             mBannerIdList.add(bannerData.getId());
             mBannerUrlList.add(bannerData.getUrl());
@@ -139,7 +152,8 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
         banner.setIndicatorGravity(BannerConfig.CENTER);
 
         banner.setOnBannerListener(i ->
-                {}
+                {
+                }
         );
         //banner设置方法全部调用完毕时最后调用
         banner.start();

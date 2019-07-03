@@ -42,6 +42,7 @@ ext {
             "SmartRefreshLayout"                :"com.scwang.smartrefresh:SmartRefreshLayout:${version["smartrefreshVersion"]}",
             "SmartRefreshHeader"                : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
             "banner"                            : "com.youth.banner:banner:1.4.10",
+            "agentweb"                          : "com.just.agentweb:agentweb:4.0.2",
 
             //di
             "dagger2"                            : "com.google.dagger:dagger:${version["dagger2Version"]}",
