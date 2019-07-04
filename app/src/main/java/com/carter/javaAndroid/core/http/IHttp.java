@@ -4,6 +4,7 @@ package com.carter.javaAndroid.core.http;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
+import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface IHttp {
     Observable<BaseResponse<List<BannerData>>> getBannerData();
 
     Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles();
+
+    Observable<BaseResponse<List<KnowledgeTreeBean>>> getKnowledgeTree();
 }

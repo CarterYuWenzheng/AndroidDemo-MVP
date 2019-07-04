@@ -7,6 +7,7 @@ import com.carter.javaAndroid.core.preference.IPreference;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
+import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 
 import java.util.List;
@@ -72,5 +73,10 @@ public class DataManager implements IHttp, IPreference {
     @Override
     public Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles() {
         return mIHttp.getTopArticles();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<KnowledgeTreeBean>>> getKnowledgeTree() {
+        return mIHttp.getKnowledgeTree();
     }
 }

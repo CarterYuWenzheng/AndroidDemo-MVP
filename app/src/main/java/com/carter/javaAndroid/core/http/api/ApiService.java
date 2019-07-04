@@ -4,6 +4,7 @@ import com.carter.javaAndroid.core.http.BaseResponse;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
+import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 
 import java.util.List;
@@ -43,6 +44,15 @@ public interface ApiService {
      */
     @GET("article/top/json")
     Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles();
+
+    /**
+     * 知识体系
+     * https://www.wanandroid.com/tree/json
+     *
+     * @return 知识体系数据
+     */
+    @GET("tree/json")
+    Observable<BaseResponse<List<KnowledgeTreeBean>>> getKnowledgeTreeData();
 
     /**
      * 登录
