@@ -84,7 +84,7 @@
     <string name="write_permission_not_allowed">Gets write permission failed</string>
 
     <!-- behavior -->
-    <string name="scale_down_show_behavior" translatable="false">com.forgetsky.wanandroid.widget.behavior.ScaleDownShowBehavior</string>
+    <string name="scale_down_show_behavior" translatable="false">com.carter.javaAndroid.widget.behavior.ScaleDownShowBehavior</string>
 
     <!-- about -->
     <string name="about_upgrade">Upgrade</string>

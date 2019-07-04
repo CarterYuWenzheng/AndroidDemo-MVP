@@ -3,8 +3,19 @@ package com.carter.javaAndroid.modules.main.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -39,8 +50,22 @@ import static com.carter.javaAndroid.Application.MyApplication.getContext;
 @Route(path = ARouterPath.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<MainActivityPresenter> implements MainActivityContract.View {
 
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.toolbar_title)
+    TextView mTitle;
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.main_floating_action_btn)
+    FloatingActionButton mFloatingActionButton;
     @BindView(R.id.bottom_navigation_view)
-    BottomNavigationView bottomNavigationView;
+    BottomNavigationView mBottomNavigationView;
+    @BindView(R.id.fragment_layout)
+    FrameLayout mFrameGroup;
+    TextView mUsTv;
+    private AlertDialog mDialog;
 
     private HomePagerFragment homePagerFragment;
     private KnowledgeFragment knowledgeFragment;
@@ -69,6 +94,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         EventBus.getDefault().register(this);
         showFragment(mCurrentFragmentIndex);
         initButtonNavigationView();
+        initDrawerLayout();
     }
 
     private void showFragment(int index) {
@@ -78,6 +104,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         mLastFragmentIndex = index;
         switch (index) {
             case Constants.FRAGMENT_HOME_PAGER:
+                mTitle.setText(R.string.home_pager);
                 if (homePagerFragment == null) {
                     homePagerFragment = HomePagerFragment.newInstance();
                     fragmentTransaction.add(R.id.fragment_layout, homePagerFragment);
@@ -85,6 +112,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 fragmentTransaction.show(homePagerFragment);
                 break;
             case Constants.FRAGMENT_KNOWLEDGE:
+                mTitle.setText(R.string.knowledge_hierarchy);
                 if (knowledgeFragment == null) {
                     knowledgeFragment = KnowledgeFragment.newInstance();
                     fragmentTransaction.add(R.id.fragment_layout, knowledgeFragment);
@@ -92,6 +120,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 fragmentTransaction.show(knowledgeFragment);
                 break;
             case Constants.FRAGMENT_NAVIGATION:
+                mTitle.setText(R.string.navigation);
                 if (navigationFragment == null) {
                     navigationFragment = NavigationFragment.newInstance();
                     fragmentTransaction.add(R.id.fragment_layout, navigationFragment);
@@ -99,6 +128,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 fragmentTransaction.show(navigationFragment);
                 break;
             case Constants.FRAGMENT_WX_ARTICLE:
+                mTitle.setText(R.string.wx_article);
                 if (wxArticleFragment == null) {
                     wxArticleFragment = WxArticleFragment.newInstance();
                     fragmentTransaction.add(R.id.fragment_layout, wxArticleFragment);
@@ -106,6 +136,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 fragmentTransaction.show(wxArticleFragment);
                 break;
             case Constants.FRAGMENT_PROJECT:
+                mTitle.setText(R.string.project);
                 if (projectFragment == null) {
                     projectFragment = ProjectFragment.newInstance();
                     fragmentTransaction.add(R.id.fragment_layout, projectFragment);
@@ -157,7 +188,12 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
 
     @Override
     protected void initToolBar() {
-
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+            mTitle.setText(R.string.home_pager);
+        }
     }
 
     @Override
@@ -166,7 +202,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     }
 
     private void initButtonNavigationView() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.tab_main:
                     showFragment(Constants.FRAGMENT_HOME_PAGER);
@@ -188,6 +224,35 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
             }
             return true;
         });
+    }
+
+    private void initDrawerLayout() {
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, mDrawerLayout, mToolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle.syncState();
+        mDrawerLayout.addDrawerListener(toggle);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_toolbar_layout, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                ToastUtils.showToast(this, "搜索页面");
+                break;
+            case R.id.action_usage:
+                ToastUtils.showToast(this, "常用工具");
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     @OnClick({})
