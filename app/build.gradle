@@ -50,6 +50,8 @@ dependencies {
     implementation rootProject.ext.dependencies["SmartRefreshHeader"]
     implementation rootProject.ext.dependencies["banner"]
     implementation rootProject.ext.dependencies["agentweb"]//WebView
+    implementation rootProject.ext.dependencies["VerticalTabLayout"]//垂直布局
+    implementation rootProject.ext.dependencies["flowlayout-lib"]//流式布局
 
     //di
     implementation rootProject.ext.dependencies["dagger2"]

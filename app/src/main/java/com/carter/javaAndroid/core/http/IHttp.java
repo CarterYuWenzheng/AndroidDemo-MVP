@@ -6,13 +6,13 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 
 public interface IHttp {
-
 
     Observable<BaseResponse<LoginData>> login(String username, String password);
 
@@ -23,4 +23,7 @@ public interface IHttp {
     Observable<BaseResponse<List<ArticleItemBean>>> getTopArticles();
 
     Observable<BaseResponse<List<KnowledgeTreeBean>>> getKnowledgeTree();
+
+    Observable<BaseResponse<List<NavigationListBean>>> getNavigationList();
+
 }

@@ -6,6 +6,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 
 import java.util.List;
 
@@ -53,6 +54,16 @@ public interface ApiService {
      */
     @GET("tree/json")
     Observable<BaseResponse<List<KnowledgeTreeBean>>> getKnowledgeTreeData();
+
+
+    /**
+     * 导航列表
+     * https://www.wanandroid.com/navi/json
+     *
+     * @return 导航数据
+     */
+    @GET("navi/json")
+    Observable<BaseResponse<List<NavigationListBean>>> getNavigationListData();
 
     /**
      * 登录

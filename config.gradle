@@ -43,6 +43,8 @@ ext {
             "SmartRefreshHeader"                : "com.scwang.smartrefresh:SmartRefreshHeader:${version["smartrefreshVersion"]}",
             "banner"                            : "com.youth.banner:banner:1.4.10",
             "agentweb"                          : "com.just.agentweb:agentweb:4.0.2",
+            "VerticalTabLayout"                 : "q.rorbin:VerticalTabLayout:1.2.5",
+            "flowlayout-lib"                    : "com.hyman:flowlayout-lib:1.1.2",
 
             //di
             "dagger2"                            : "com.google.dagger:dagger:${version["dagger2Version"]}",

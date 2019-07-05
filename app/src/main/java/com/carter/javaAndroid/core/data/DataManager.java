@@ -9,6 +9,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 
 import java.util.List;
 
@@ -78,5 +79,10 @@ public class DataManager implements IHttp, IPreference {
     @Override
     public Observable<BaseResponse<List<KnowledgeTreeBean>>> getKnowledgeTree() {
         return mIHttp.getKnowledgeTree();
+    }
+
+    @Override
+    public Observable<BaseResponse<List<NavigationListBean>>> getNavigationList() {
+        return mIHttp.getNavigationList();
     }
 }
