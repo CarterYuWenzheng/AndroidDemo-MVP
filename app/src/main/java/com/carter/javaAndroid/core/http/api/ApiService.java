@@ -66,6 +66,17 @@ public interface ApiService {
     Observable<BaseResponse<List<NavigationListBean>>> getNavigationListData();
 
     /**
+     * 获取当前公众号的数据
+     * https://wanandroid.com/wxarticle/list/405/1/json
+     *
+     * @param id
+     * @param page
+     * @return 获取当前公众号的数据
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    Observable<BaseResponse<ArticleListBean>> getWxArticlesData(@Path("id") int id, @Path("page") int page);
+
+    /**
      * 登录
      * https://www.wanandroid.com/user/login
      *

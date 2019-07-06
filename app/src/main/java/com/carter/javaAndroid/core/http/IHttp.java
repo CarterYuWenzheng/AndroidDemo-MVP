@@ -26,4 +26,6 @@ public interface IHttp {
 
     Observable<BaseResponse<List<NavigationListBean>>> getNavigationList();
 
+    Observable<BaseResponse<ArticleListBean>> getWxArticlesData(int id,int page);
+
 }

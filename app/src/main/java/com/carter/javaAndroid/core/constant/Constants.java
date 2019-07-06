@@ -49,6 +49,7 @@ public class Constants {
 
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
 
+    public static final String WX_CHAPTER_ID = "wx_chapter_id";
 
     /**
      * EventBus Tag

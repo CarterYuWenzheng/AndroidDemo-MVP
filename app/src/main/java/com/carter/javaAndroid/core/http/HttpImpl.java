@@ -54,4 +54,9 @@ public class HttpImpl implements IHttp {
     public Observable<BaseResponse<List<NavigationListBean>>> getNavigationList() {
         return mApiService.getNavigationListData();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getWxArticlesData(int id, int page) {
+        return mApiService.getWxArticlesData(id,page);
+    }
 }

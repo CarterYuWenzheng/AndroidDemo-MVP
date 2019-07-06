@@ -85,4 +85,9 @@ public class DataManager implements IHttp, IPreference {
     public Observable<BaseResponse<List<NavigationListBean>>> getNavigationList() {
         return mIHttp.getNavigationList();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getWxArticlesData(int id, int page) {
+        return mIHttp.getWxArticlesData(id, page);
+    }
 }
