@@ -7,6 +7,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
+import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
 import java.util.List;
 
@@ -64,6 +65,15 @@ public interface ApiService {
      */
     @GET("navi/json")
     Observable<BaseResponse<List<NavigationListBean>>> getNavigationListData();
+
+    /**
+     * 获取公众号列表
+     * https://wanandroid.com/wxarticle/chapters/json
+     *
+     * @return 公众号列表数据
+     */
+    @GET("wxarticle/chapters/json")
+    Observable<BaseResponse<List<WxChapterBean>>> getWxChapterListData();
 
     /**
      * 获取当前公众号的数据
