@@ -7,6 +7,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
+import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
 import java.util.List;
@@ -30,5 +31,9 @@ public interface IHttp {
     Observable<BaseResponse<List<WxChapterBean>>> getWxChapterListData();
 
     Observable<BaseResponse<ArticleListBean>> getWxArticlesData(int id,int page);
+
+    Observable<BaseResponse<List<ProjectTreeBean>>> getProjectTreeData();
+
+    Observable<BaseResponse<ArticleListBean>> getProjectListData(int page,int cid);
 
 }

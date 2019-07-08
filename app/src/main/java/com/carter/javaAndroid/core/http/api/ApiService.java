@@ -7,6 +7,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
+import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -85,6 +87,26 @@ public interface ApiService {
      */
     @GET("wxarticle/list/{id}/{page}/json")
     Observable<BaseResponse<ArticleListBean>> getWxArticlesData(@Path("id") int id, @Path("page") int page);
+
+    /**
+     * 项目分类
+     * https://www.wanandroid.com/project/tree/json
+     *
+     * @return 项目分类数据
+     */
+    @GET("project/tree/json")
+    Observable<BaseResponse<List<ProjectTreeBean>>> getProjectTreeData();
+
+    /**
+     * 项目列表数据
+     * https://www.wanandroid.com/project/list/1/json?cid=294
+     *
+     * @param page page num
+     * @param cid  child page id
+     * @return 项目列表数据
+     */
+    @GET("project/list/{page}/json")
+    Observable<BaseResponse<ArticleListBean>> getProjectListData(@Path("page") int page, @Query("cid") int cid);
 
     /**
      * 登录

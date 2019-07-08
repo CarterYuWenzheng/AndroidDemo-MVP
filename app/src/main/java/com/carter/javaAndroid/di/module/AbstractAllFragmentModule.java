@@ -7,6 +7,7 @@ import com.carter.javaAndroid.modules.login.ui.LoginFragment;
 import com.carter.javaAndroid.modules.login.ui.RegisterFragment;
 import com.carter.javaAndroid.modules.navigation.ui.NavigationFragment;
 import com.carter.javaAndroid.modules.project.ui.ProjectFragment;
+import com.carter.javaAndroid.modules.project.ui.ProjectListFragment;
 import com.carter.javaAndroid.modules.wxarticle.ui.WxArticleFragment;
 import com.carter.javaAndroid.modules.wxarticle.ui.WxArticleListFragment;
 
@@ -40,4 +41,7 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = WxArticleListFragmentModule.class)
     abstract WxArticleListFragment contributesWxArticleListFragmentInject();
+
+    @ContributesAndroidInjector(modules = ProjectListFragmentModule.class)
+    abstract ProjectListFragment contributesProjectListFragmentInject();
 }
