@@ -96,4 +96,10 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
             mAdapter.addData(articleListBean.getDatas());
         }
     }
+
+    public void jumpToTop() {
+        if (mRecyclerView != null) {
+            mRecyclerView.smoothScrollToPosition(0);
+        }
+    }
 }

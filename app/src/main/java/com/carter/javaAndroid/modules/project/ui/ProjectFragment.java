@@ -106,6 +106,13 @@ public class ProjectFragment extends BaseFragment<ProjectPresenter> implements P
         });
     }
 
+    public void jumpToTop(){
+        currentFragment = fragmentSparseArray.get(mViewPager.getCurrentItem());
+        if (currentFragment != null){
+            currentFragment.jumpToTop();
+        }
+    }
+
     @Override
     public void onDestroyView() {
         if (fragmentSparseArray != null) {

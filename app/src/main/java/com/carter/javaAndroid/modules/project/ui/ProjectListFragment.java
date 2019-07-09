@@ -45,9 +45,11 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
 
     private void initRecyclerView() {
         mArticleList = new ArrayList<>();
-        mAdapter = new ProjectListAdapter(R.layout.adapter_project_list_item,mArticleList);
-        mAdapter.setOnItemClickListener((adapter, view, position) -> {});
-        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {});
+        mAdapter = new ProjectListAdapter(R.layout.adapter_project_list_item, mArticleList);
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {
+        });
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+        });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
@@ -56,7 +58,7 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
 
     private void initRefreshLayout() {
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.refreshLayout(cid,false);
+            mPresenter.refreshLayout(cid, false);
             mRefreshLayout.finishRefresh();
         });
         mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
@@ -79,15 +81,21 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
 
     @Override
     public void showProjectListData(ArticleListBean articleListBean, boolean isRefresh) {
-        if (mAdapter == null){
+        if (mAdapter == null) {
             return;
         }
-        if (isRefresh){
+        if (isRefresh) {
             mArticleList = articleListBean.getDatas();
             mAdapter.replaceData(mArticleList);
         } else {
             mArticleList.addAll(articleListBean.getDatas());
             mAdapter.addData(mArticleList);
+        }
+    }
+
+    public void jumpToTop() {
+        if (mRecyclerView != null) {
+            mRecyclerView.smoothScrollToPosition(0);
         }
     }
 }

@@ -158,4 +158,10 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
         //banner设置方法全部调用完毕时最后调用
         banner.start();
     }
+
+    public void jumpToTop() {
+        if (recyclerView != null) {
+            recyclerView.smoothScrollToPosition(0);
+        }
+    }
 }

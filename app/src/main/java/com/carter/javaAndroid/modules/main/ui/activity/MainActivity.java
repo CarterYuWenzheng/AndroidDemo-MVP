@@ -255,10 +255,43 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         return true;
     }
 
-    @OnClick({})
+    @OnClick({R.id.main_floating_action_btn})
     void onClick(View view) {
         switch (view.getId()) {
+            case R.id.main_floating_action_btn:
+                jumpToTop();
+                break;
+            default:
+                break;
+        }
+    }
 
+    private void jumpToTop() {
+        switch (mCurrentFragmentIndex) {
+            case Constants.FRAGMENT_HOME_PAGER:
+                if (homePagerFragment != null) {
+                    homePagerFragment.jumpToTop();
+                }
+                break;
+            case Constants.FRAGMENT_KNOWLEDGE:
+                if (knowledgeFragment != null) {
+                    knowledgeFragment.jumpToTop();
+                }
+                break;
+            case Constants.FRAGMENT_WX_ARTICLE:
+                if (wxArticleFragment != null) {
+                    wxArticleFragment.jumpToTop();
+                }
+            case Constants.FRAGMENT_NAVIGATION:
+                if (navigationFragment != null) {
+                    navigationFragment.jumpToTop();
+                }
+                break;
+            case Constants.FRAGMENT_PROJECT:
+                if (projectFragment != null) {
+                    projectFragment.jumpToTop();
+                }
+                break;
             default:
                 break;
         }

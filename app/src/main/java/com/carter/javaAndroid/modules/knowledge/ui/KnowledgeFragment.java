@@ -35,8 +35,6 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
         initRefreshLayout();
     }
 
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_knowledge;
@@ -67,6 +65,12 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
     public void showKnowledgeTree(List<KnowledgeTreeBean> knowledgeTreeBeans) {
         if (adapter.getData().size() < knowledgeTreeBeans.size()){
             adapter.replaceData(knowledgeTreeBeans);
+        }
+    }
+
+    public void jumpToTop() {
+        if (recyclerView != null) {
+            recyclerView.smoothScrollToPosition(0);
         }
     }
 }

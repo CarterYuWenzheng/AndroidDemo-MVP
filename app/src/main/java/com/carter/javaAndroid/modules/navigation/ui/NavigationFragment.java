@@ -174,5 +174,9 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
         }
     }
 
-
+    public void jumpToTop() {
+        if (recyclerView != null) {
+            recyclerView.smoothScrollToPosition(0);
+        }
+    }
 }
