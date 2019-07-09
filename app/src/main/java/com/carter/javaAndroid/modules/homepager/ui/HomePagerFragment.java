@@ -16,6 +16,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.homepager.contract.HomePagerContract;
 import com.carter.javaAndroid.modules.homepager.presenter.HomePagerPresenter;
+import com.carter.javaAndroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -95,7 +96,25 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
     }
 
     private void clickChildEvent(View view, int position) {
+        switch (view.getId()) {
+            case R.id.iv_article_like:
+                collectClickEvent(position);
+                break;
+            default:
+                break;
+        }
+    }
 
+    private void collectClickEvent(int position) {
+        if (mPresenter.getLoginStatus()) {
+            if (adapter.getData().get(position).isCollect()) {
+                mPresenter.cancelCollectArticle(position, adapter.getData().get(position).getId());
+            } else {
+                mPresenter.addCollectArticle(position, adapter.getData().get(position).getId());
+            }
+        } else {
+            ToastUtils.showToast(_mActivity, "请先登录");
+        }
     }
 
     private void initRefreshLayout() {
@@ -151,10 +170,17 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.CENTER);
 
-        banner.setOnBannerListener(i ->
-                {
-                }
-        );
+        banner.setOnBannerListener(i -> {
+            ARouter.getInstance().build(ARouterPath.ARTICLE_DETAIL_ACTIVITY)
+                    .withInt(Constants.ARTICLE_ID, mBannerIdList.get(i))
+                    .withString(Constants.ARTICLE_TITLE, mBannerTitleList.get(i))
+                    .withString(Constants.ARTICLE_LINK, mBannerUrlList.get(i))
+                    .withBoolean(Constants.IS_COLLECTED, false)
+                    .withBoolean(Constants.IS_SHOW_COLLECT_ICON, false)
+                    .withInt(Constants.ARTICLE_ITEM_POSITION, -1)
+                    .withString(Constants.EVENT_BUS_TAG, Constants.TAG_DEFAULT)
+                    .navigation();
+        });
         //banner设置方法全部调用完毕时最后调用
         banner.start();
     }
@@ -163,5 +189,19 @@ public class HomePagerFragment extends BaseFragment<HomePagerPresenter>
         if (recyclerView != null) {
             recyclerView.smoothScrollToPosition(0);
         }
+    }
+
+    @Override
+    public void showCollectSuccess(int position) {
+        adapter.getData().get(position).setCollect(true);
+        adapter.setData(position, adapter.getData().get(position));
+        ToastUtils.showToast(_mActivity,"搜藏成功");
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
+        adapter.getData().get(position).setCollect(false);
+        adapter.setData(position, adapter.getData().get(position));
+        ToastUtils.showToast(_mActivity,"搜藏失败");
     }
 }

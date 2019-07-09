@@ -36,4 +36,8 @@ public interface IHttp {
 
     Observable<BaseResponse<ArticleListBean>> getProjectListData(int page,int cid);
 
+    Observable<BaseResponse<ArticleListBean>> addCollectArticle(int id);
+
+    Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(int id);
+
 }

@@ -109,6 +109,26 @@ public interface ApiService {
     Observable<BaseResponse<ArticleListBean>> getProjectListData(@Path("page") int page, @Query("cid") int cid);
 
     /**
+     * 收藏站内文章
+     * https://www.wanandroid.com/lg/collect/1165/json
+     *
+     * @param id article id
+     * @return 收藏站内文章数据
+     */
+    @POST("lg/collect/{id}/json")
+    Observable<BaseResponse<ArticleListBean>> addCollectArticle(@Path("id") int id);
+
+    /**
+     * 文章列表中取消收藏文章
+     * https://www.wanandroid.com/lg/uncollect_originId/2333/json
+     *
+     * @param id 列表中文章的id
+     * @return 取消站内文章数据
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(@Path("id") int id);
+
+    /**
      * 登录
      * https://www.wanandroid.com/user/login
      *

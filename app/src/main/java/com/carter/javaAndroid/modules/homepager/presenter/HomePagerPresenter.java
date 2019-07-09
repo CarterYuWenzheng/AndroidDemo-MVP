@@ -1,8 +1,5 @@
 package com.carter.javaAndroid.modules.homepager.presenter;
 
-
-import com.carter.javaAndroid.R;
-import com.carter.javaAndroid.core.http.BaseResponse;
 import com.carter.javaAndroid.core.rx.BaseObserver;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;

@@ -98,4 +98,14 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
             mRecyclerView.smoothScrollToPosition(0);
         }
     }
+
+    @Override
+    public void showCollectSuccess(int position) {
+
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
+
+    }
 }

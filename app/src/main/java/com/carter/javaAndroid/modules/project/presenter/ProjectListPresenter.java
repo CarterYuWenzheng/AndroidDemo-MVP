@@ -49,4 +49,14 @@ public class ProjectListPresenter extends BasePresenter<ProjectListContract.View
         currentPage++;
         getProjectListData(false);
     }
+
+    @Override
+    public void addCollectArticle(int position, int id) {
+
+    }
+
+    @Override
+    public void cancelCollectArticle(int position, int id) {
+
+    }
 }

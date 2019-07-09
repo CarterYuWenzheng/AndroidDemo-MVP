@@ -76,4 +76,14 @@ public class HttpImpl implements IHttp {
     public Observable<BaseResponse<ArticleListBean>> getProjectListData(int page, int cid) {
         return mApiService.getProjectListData(page,cid);
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> addCollectArticle(int id) {
+        return mApiService.addCollectArticle(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(int id) {
+        return mApiService.cancelCollectArticle(id);
+    }
 }

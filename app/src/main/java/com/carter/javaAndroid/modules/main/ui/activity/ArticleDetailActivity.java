@@ -135,4 +135,14 @@ public class ArticleDetailActivity extends BaseActivity<ArticleDetailActivityPre
         articleItemPosition = bundle.getInt(Constants.ARTICLE_ITEM_POSITION, -1);
         eventBusTag = bundle.getString(Constants.EVENT_BUS_TAG);
     }
+
+    @Override
+    public void showCollectSuccess(int position) {
+
+    }
+
+    @Override
+    public void showCancelCollectSuccess(int position) {
+
+    }
 }
