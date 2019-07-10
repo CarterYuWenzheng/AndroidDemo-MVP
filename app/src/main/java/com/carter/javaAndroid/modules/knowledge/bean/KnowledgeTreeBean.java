@@ -1,8 +1,9 @@
 package com.carter.javaAndroid.modules.knowledge.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class KnowledgeTreeBean {
+public class KnowledgeTreeBean implements Serializable {
 
     private List<KnowledgeTreeBean> children;
     private int courseId;

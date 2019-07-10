@@ -1,10 +1,12 @@
 package com.carter.javaAndroid.modules.knowledge.ui;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.fragment.BaseFragment;
+import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.knowledge.contract.KnowledgeContract;
 import com.carter.javaAndroid.modules.knowledge.presenter.KnowledgePresenter;
@@ -48,10 +50,16 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
     private void initRecyclerView() {
         List<KnowledgeTreeBean> knowledgeTreeBeans = new ArrayList<>();
         adapter = new KnowledgeTreeAdapter(R.layout.adapter_knowledge_tree,knowledgeTreeBeans);
-        adapter.setOnItemClickListener((adapter1, view, position) -> {});
+        adapter.setOnItemClickListener((adapter1, view, position) -> startKnowledgeActivity(position));
         recyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void startKnowledgeActivity(int position) {
+        Intent intent = new Intent(_mActivity, KnowledgeActivity.class);
+        intent.putExtra(Constants.KNOWLEDGE_DATA, adapter.getData().get(position));
+        startActivity(intent);
     }
 
     private void initRefreshLayout() {
