@@ -3,6 +3,7 @@ package com.carter.javaAndroid.di.module;
 import com.carter.javaAndroid.di.component.BaseFragmentComponent;
 import com.carter.javaAndroid.modules.homepager.ui.HomePagerFragment;
 import com.carter.javaAndroid.modules.knowledge.ui.KnowledgeFragment;
+import com.carter.javaAndroid.modules.knowledge.ui.KnowledgeListFragment;
 import com.carter.javaAndroid.modules.login.ui.LoginFragment;
 import com.carter.javaAndroid.modules.login.ui.RegisterFragment;
 import com.carter.javaAndroid.modules.navigation.ui.NavigationFragment;
@@ -44,4 +45,7 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = ProjectListFragmentModule.class)
     abstract ProjectListFragment contributesProjectListFragmentInject();
+
+    @ContributesAndroidInjector(modules = KnowledgeListFragmentModule.class)
+    abstract KnowledgeListFragment contributesKnowledgeListFragmentInject();
 }
