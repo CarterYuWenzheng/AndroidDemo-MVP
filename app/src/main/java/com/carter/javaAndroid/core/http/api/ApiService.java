@@ -129,6 +129,18 @@ public interface ApiService {
     Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(@Path("id") int id);
 
     /**
+     * 知识体系下的文章
+     * https://www.wanandroid.com/article/list/0?cid=60
+     *
+     * @param page page num
+     * @param cid  second page id
+     * @return 知识体系文章数据
+     */
+    @GET("article/list/{page}/json")
+    Observable<BaseResponse<ArticleListBean>> getKnowledgeListData(@Path("page") int page, @Query("cid") int cid);
+
+
+    /**
      * 登录
      * https://www.wanandroid.com/user/login
      *

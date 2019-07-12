@@ -40,4 +40,6 @@ public interface IHttp {
 
     Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(int id);
 
+    Observable<BaseResponse<ArticleListBean>> getKnowledgeListData(int page, int cid);
+
 }

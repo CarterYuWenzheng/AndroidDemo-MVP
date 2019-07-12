@@ -117,4 +117,9 @@ public class DataManager implements IHttp, IPreference {
     public Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(int id) {
         return mIHttp.cancelCollectArticle(id);
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getKnowledgeListData(int page, int cid) {
+        return mIHttp.getKnowledgeListData(page, cid);
+    }
 }

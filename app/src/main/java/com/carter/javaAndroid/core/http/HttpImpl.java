@@ -1,7 +1,6 @@
 package com.carter.javaAndroid.core.http;
 
 
-
 import com.carter.javaAndroid.core.http.api.ApiService;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
@@ -23,13 +22,13 @@ public class HttpImpl implements IHttp {
     private ApiService mApiService;
 
     @Inject
-    HttpImpl(ApiService apiService){
+    HttpImpl(ApiService apiService) {
         mApiService = apiService;
     }
 
     @Override
     public Observable<BaseResponse<LoginData>> login(String username, String password) {
-        return mApiService.login(username,password);
+        return mApiService.login(username, password);
     }
 
     @Override
@@ -64,7 +63,7 @@ public class HttpImpl implements IHttp {
 
     @Override
     public Observable<BaseResponse<ArticleListBean>> getWxArticlesData(int id, int page) {
-        return mApiService.getWxArticlesData(id,page);
+        return mApiService.getWxArticlesData(id, page);
     }
 
     @Override
@@ -74,7 +73,7 @@ public class HttpImpl implements IHttp {
 
     @Override
     public Observable<BaseResponse<ArticleListBean>> getProjectListData(int page, int cid) {
-        return mApiService.getProjectListData(page,cid);
+        return mApiService.getProjectListData(page, cid);
     }
 
     @Override
@@ -85,5 +84,10 @@ public class HttpImpl implements IHttp {
     @Override
     public Observable<BaseResponse<ArticleListBean>> cancelCollectArticle(int id) {
         return mApiService.cancelCollectArticle(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getKnowledgeListData(int page, int cid) {
+        return mApiService.getKnowledgeListData(page, cid);
     }
 }
