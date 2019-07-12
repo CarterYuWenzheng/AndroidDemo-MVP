@@ -1,16 +1,67 @@
 package com.carter.javaAndroid.modules.knowledge.ui;
 
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.fragment.BaseFragment;
+import com.carter.javaAndroid.core.constant.Constants;
+import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
+import com.carter.javaAndroid.modules.homepager.ui.ArticleAdapter;
 import com.carter.javaAndroid.modules.knowledge.contract.KnowledgeListContract;
 import com.carter.javaAndroid.modules.knowledge.presenter.KnowledgeListPresenter;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> implements KnowledgeListContract.View {
 
+    @BindView(R.id.smart_refresh_layout)
+    SmartRefreshLayout mRefreshLayout;
+    @BindView(R.id.project_list_recycler_view)
+    RecyclerView mRecyclerView;
+
+    private ArticleAdapter mAdapter;
+
+    private int cid;
+
+    public static KnowledgeListFragment newInstance(Bundle bundle){
+        KnowledgeListFragment fragment = new KnowledgeListFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
     protected void initView() {
+        initRecyclerView();
+        initRefreshLayout();
+    }
 
+    private void initRecyclerView() {
+        List<ArticleItemBean> mArticleList = new ArrayList<>();
+        mAdapter =new ArticleAdapter(R.layout.adapter_article_item,mArticleList);
+        mAdapter.setOnItemClickListener((adapter, view, position) -> {});
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {});
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void initRefreshLayout() {
+        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
+            mPresenter.refreshLayout(cid,false);
+            mRefreshLayout.finishRefresh();
+        });
+        mRefreshLayout.setOnLoadMoreListener(refreshLayout -> {
+            mPresenter.loadMore();
+            mRefreshLayout.finishLoadMore();
+        });
     }
 
     @Override
@@ -20,7 +71,9 @@ public class KnowledgeListFragment extends BaseFragment<KnowledgeListPresenter> 
 
     @Override
     protected void initEventAndData() {
-
+        assert  getArguments() != null;
+        cid = getArguments().getInt(Constants.KNOWLEDGE_CID);
+        mPresenter.refreshLayout(cid,true);
     }
 
     @Override
