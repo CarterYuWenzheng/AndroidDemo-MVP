@@ -10,4 +10,6 @@ public class ARouterPath {
 
     public static final String ARTICLE_DETAIL_ACTIVITY = "/app/articleDetailActivity";
 
+    public static final String KNOWLEDGE_ACTIVITY = "/app/knowledgeActivity";
+
 }
