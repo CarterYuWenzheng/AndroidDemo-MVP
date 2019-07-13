@@ -3,14 +3,18 @@ package com.carter.javaAndroid.modules.project.ui;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.fragment.BaseFragment;
+import com.carter.javaAndroid.core.constant.ARouterPath;
 import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.project.contract.ProjectListContract;
 import com.carter.javaAndroid.modules.project.presenter.ProjectListPresenter;
+import com.carter.javaAndroid.utils.CommonUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -46,14 +50,29 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
     private void initRecyclerView() {
         mArticleList = new ArrayList<>();
         mAdapter = new ProjectListAdapter(R.layout.adapter_project_list_item, mArticleList);
-        mAdapter.setOnItemClickListener((adapter, view, position) -> {
-        });
+        mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view,position));
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
         });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void startArticleDetailPager(View view, int position) {
+        if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() < position) {
+            return;
+        }
+        ArticleItemBean itemBean = mAdapter.getData().get(position);
+        ARouter.getInstance().build(ARouterPath.ARTICLE_DETAIL_ACTIVITY)
+                .withInt(Constants.ARTICLE_ID, itemBean.getId())
+                .withString(Constants.ARTICLE_TITLE, itemBean.getTitle())
+                .withString(Constants.ARTICLE_LINK, itemBean.getLink())
+                .withBoolean(Constants.IS_COLLECTED, itemBean.isCollect())
+                .withBoolean(Constants.IS_SHOW_COLLECT_ICON, true)
+                .withInt(Constants.ARTICLE_ITEM_POSITION, position)
+                .withString(Constants.EVENT_BUS_TAG, Constants.MAIN_PAGER)
+                .navigation();
     }
 
     private void initRefreshLayout() {
