@@ -12,4 +12,6 @@ public class ARouterPath {
 
     public static final String KNOWLEDGE_ACTIVITY = "/app/knowledgeActivity";
 
+    public static final String COMMON_ACTIVITY = "/app/commonActivity";
+
 }

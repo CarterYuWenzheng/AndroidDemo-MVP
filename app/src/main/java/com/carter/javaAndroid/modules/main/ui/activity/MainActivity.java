@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.activity.BaseActivity;
 import com.carter.javaAndroid.core.constant.ARouterPath;
@@ -245,6 +246,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         switch (item.getItemId()) {
             case R.id.action_search:
                 ToastUtils.showToast(this, "搜索页面");
+                ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY).navigation();
                 break;
             case R.id.action_usage:
                 ToastUtils.showToast(this, "常用工具");
