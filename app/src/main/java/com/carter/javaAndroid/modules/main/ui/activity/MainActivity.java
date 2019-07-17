@@ -246,10 +246,11 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         switch (item.getItemId()) {
             case R.id.action_search:
                 ToastUtils.showToast(this, "搜索页面");
-                ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY).navigation();
+                ARouter.getInstance().build(ARouterPath.SEARCH_ACTIVITY).navigation();
                 break;
             case R.id.action_usage:
                 ToastUtils.showToast(this, "常用工具");
+                ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY).navigation();
                 break;
             default:
                 break;
