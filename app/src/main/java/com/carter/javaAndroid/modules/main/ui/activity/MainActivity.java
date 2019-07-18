@@ -1,6 +1,7 @@
 package com.carter.javaAndroid.modules.main.ui.activity;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
@@ -94,8 +95,18 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     protected void initView() {
         EventBus.getDefault().register(this);
         showFragment(mCurrentFragmentIndex);
+        initNavigationView();
         initButtonNavigationView();
         initDrawerLayout();
+    }
+
+    private void initNavigationView() {
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                return false;
+            }
+        });
     }
 
     private void showFragment(int index) {
