@@ -1,6 +1,7 @@
 package com.carter.javaAndroid.di.module;
 
 import com.carter.javaAndroid.di.component.BaseActivityComponent;
+import com.carter.javaAndroid.modules.knowledge.ui.KnowledgeActivity;
 import com.carter.javaAndroid.modules.login.ui.LoginActivity;
 import com.carter.javaAndroid.modules.main.ui.activity.ArticleDetailActivity;
 import com.carter.javaAndroid.modules.main.ui.activity.CommonActivity;
@@ -31,4 +32,7 @@ public abstract class AbstractAllActivityModule {
 
     @ContributesAndroidInjector(modules = SearchActivityModule.class)
     abstract SearchActivity contributersSearchActivityInject();
+
+    @ContributesAndroidInjector(modules = KnowledgeActivityModule.class)
+    abstract KnowledgeActivity contributersKnowledgeActivityInject();
 }

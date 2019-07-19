@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.fragment.BaseFragment;
+import com.carter.javaAndroid.core.constant.ARouterPath;
 import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.knowledge.contract.KnowledgeContract;
@@ -57,9 +59,13 @@ public class KnowledgeFragment extends BaseFragment<KnowledgePresenter> implemen
     }
 
     private void startKnowledgeActivity(int position) {
-        Intent intent = new Intent(_mActivity, KnowledgeActivity.class);
-        intent.putExtra(Constants.KNOWLEDGE_DATA, adapter.getData().get(position));
-        startActivity(intent);
+        if (adapter.getData().size() <= 0 || adapter.getData().size() < position) {
+            return;
+        }
+        KnowledgeTreeBean knowledgeTreeBean = adapter.getData().get(position);
+        ARouter.getInstance().build(ARouterPath.KNOWLEDGE_ACTIVITY)
+                .withSerializable(Constants.KNOWLEDGE_DATA, knowledgeTreeBean)
+                .navigation();
     }
 
     private void initRefreshLayout() {

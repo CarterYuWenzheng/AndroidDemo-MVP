@@ -84,8 +84,9 @@ public class KnowledgeActivity extends BaseActivity<KnowledgeActivityPresenter> 
                     return fragment;
                 } else {
                     Bundle bundle = new Bundle();
-                    bundle.putInt(Constants.KNOWLEDGE_CID, listFragmentSparseArray.get(i).getId());
+                    bundle.putInt(Constants.KNOWLEDGE_CID, mKnowledgeTreeDataList.get(i).getId());
                     fragment = KnowledgeListFragment.newInstance(bundle);
+                    listFragmentSparseArray.put(i,fragment);
                     return fragment;
                 }
             }
