@@ -101,12 +101,33 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     }
 
     private void initNavigationView() {
-        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                return false;
+        mNavigationView.setNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.nav_item_my_collect:
+                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    break;
+                case R.id.nav_item_todo:
+                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    break;
+                case R.id.nav_item_night_mode:
+                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    break;
+                case R.id.nav_item_setting:
+                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    break;
+                case R.id.nav_item_about_us:
+                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    break;
+                case R.id.nav_item_logout:
+                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                default:
+                    break;
             }
+            return true;
         });
+        mUsTv = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_login);
+        mUsTv.setText(mPresenter.getLoginStatus() ? mPresenter.getLoginAccount() : getString(R.string.login));
+        mUsTv.setOnClickListener(v -> {});
     }
 
     private void showFragment(int index) {
