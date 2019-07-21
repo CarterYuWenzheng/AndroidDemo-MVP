@@ -8,6 +8,7 @@ import com.carter.javaAndroid.modules.main.ui.activity.CommonActivity;
 import com.carter.javaAndroid.modules.main.ui.activity.MainActivity;
 import com.carter.javaAndroid.modules.main.ui.activity.SearchActivity;
 import com.carter.javaAndroid.modules.splash.SplashActivity;
+import com.carter.javaAndroid.todo.ui.TodoActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -35,4 +36,7 @@ public abstract class AbstractAllActivityModule {
 
     @ContributesAndroidInjector(modules = KnowledgeActivityModule.class)
     abstract KnowledgeActivity contributersKnowledgeActivityInject();
+
+    @ContributesAndroidInjector(modules = TodoActivityModule.class)
+    abstract TodoActivity contributersTodoeActivityInject();
 }
