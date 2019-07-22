@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".todo.ui.TodoActivity">
+    tools:context=".modules.todo.ui.TodoActivity">
 
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,7 @@
-package com.carter.javaAndroid.todo.presenter;
+package com.carter.javaAndroid.modules.todo.presenter;
 
 import com.carter.javaAndroid.base.presenter.BasePresenter;
-import com.carter.javaAndroid.todo.contract.TodoContract;
+import com.carter.javaAndroid.modules.todo.contract.TodoContract;
 
 import javax.inject.Inject;
 

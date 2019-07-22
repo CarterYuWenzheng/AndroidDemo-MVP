@@ -1,9 +1,9 @@
-package com.carter.javaAndroid.todo.ui;
+package com.carter.javaAndroid.modules.todo.ui;
 
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.activity.BaseActivity;
-import com.carter.javaAndroid.todo.contract.TodoContract;
-import com.carter.javaAndroid.todo.presenter.TodoPresenter;
+import com.carter.javaAndroid.modules.todo.contract.TodoContract;
+import com.carter.javaAndroid.modules.todo.presenter.TodoPresenter;
 
 public class TodoActivity extends BaseActivity<TodoPresenter> implements TodoContract.View {
 

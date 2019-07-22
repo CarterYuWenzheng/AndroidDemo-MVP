@@ -8,7 +8,7 @@ import com.carter.javaAndroid.modules.main.ui.activity.CommonActivity;
 import com.carter.javaAndroid.modules.main.ui.activity.MainActivity;
 import com.carter.javaAndroid.modules.main.ui.activity.SearchActivity;
 import com.carter.javaAndroid.modules.splash.SplashActivity;
-import com.carter.javaAndroid.todo.ui.TodoActivity;
+import com.carter.javaAndroid.modules.todo.ui.TodoActivity;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

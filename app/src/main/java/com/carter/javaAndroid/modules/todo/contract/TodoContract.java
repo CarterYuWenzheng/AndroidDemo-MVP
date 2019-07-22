@@ -1,4 +1,4 @@
-package com.carter.javaAndroid.todo.contract;
+package com.carter.javaAndroid.modules.todo.contract;
 
 import com.carter.javaAndroid.base.presenter.IPresenter;
 import com.carter.javaAndroid.base.view.IView;
