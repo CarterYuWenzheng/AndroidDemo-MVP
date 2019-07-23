@@ -9,6 +9,6 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
         implements MainActivityContract.Presenter {
 
     @Inject
-    public MainActivityPresenter() {
+    MainActivityPresenter() {
     }
 }
