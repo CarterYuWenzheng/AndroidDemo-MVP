@@ -82,6 +82,7 @@ public class LoginFragment extends BaseFragment<LoginFragmentPresenter> implemen
     @Override
     public void loginSuccess() {
         ToastUtils.showToast(_mActivity,"登录成功");
+        _mActivity.finish();
     }
 
 }

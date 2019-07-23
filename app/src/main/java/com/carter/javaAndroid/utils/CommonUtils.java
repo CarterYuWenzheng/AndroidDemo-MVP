@@ -14,8 +14,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.Application.MyApplication;
 import com.carter.javaAndroid.R;
+import com.carter.javaAndroid.core.constant.ARouterPath;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -31,6 +33,10 @@ public class CommonUtils {
         assert connectivityManager != null;
         NetworkInfo info = connectivityManager.getActiveNetworkInfo();
         return info != null && info.isConnected();
+    }
+
+    public static void startLoginActivity() {
+        ARouter.getInstance().build(ARouterPath.LOGIN_ACTIVITY).navigation();
     }
 
     public static int getRandomColor() {
@@ -99,6 +105,7 @@ public class CommonUtils {
         popupWindow.showAtLocation(anchorView, Gravity.NO_GRAVITY, windowPos[0], windowPos[1]);
         return popupWindow;
     }
+
     /**
      * 计算出来的位置，y方向就在anchorView的中心对齐显示，x方向就是与View的中心点对齐
      *
@@ -118,7 +125,7 @@ public class CommonUtils {
         final int windowHeight = contentView.getMeasuredHeight();
         final int windowWidth = contentView.getMeasuredWidth();
         // 判断需要向上弹出还是向下弹出显示
-        final boolean isNeedShowUp = (anchorLoc[1] >  screenHeight / 3);
+        final boolean isNeedShowUp = (anchorLoc[1] > screenHeight / 3);
         //偏移，否则会弹出在屏幕外
         int offset = windowWidth > anchorWidth ? (windowWidth - anchorWidth) : 0;
         //实际坐标中心点为触发view的中间

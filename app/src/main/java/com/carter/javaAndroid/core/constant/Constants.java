@@ -46,7 +46,9 @@ public class Constants {
     public static final int FRAGMENT_WX_ARTICLE = 3;
     public static final int FRAGMENT_PROJECT = 4;
 
+    public static final int TYPE_COLLECT = 5;
 
+    public static final String TYPE_FRAGMENT_KEY = "type_fragment";
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
 
     public static final String WX_CHAPTER_ID = "wx_chapter_id";

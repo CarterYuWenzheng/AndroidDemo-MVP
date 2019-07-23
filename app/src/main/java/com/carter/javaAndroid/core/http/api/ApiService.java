@@ -151,4 +151,14 @@ public interface ApiService {
     @POST("user/login")
     @FormUrlEncoded
     Observable<BaseResponse<LoginData>> login(@Field("username") String username, @Field("password") String password);
+
+
+    /**
+     * 退出登录
+     * https://www.wanandroid.com/user/logout/json
+     *
+     * @return 登录数据
+     */
+    @GET("user/logout/json")
+    Observable<BaseResponse<LoginData>> logout();
 }

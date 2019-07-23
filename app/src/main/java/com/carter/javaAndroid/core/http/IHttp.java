@@ -18,6 +18,8 @@ public interface IHttp {
 
     Observable<BaseResponse<LoginData>> login(String username, String password);
 
+    Observable<BaseResponse<LoginData>> logout();
+
     Observable<BaseResponse<ArticleListBean>> getArticleList(int pageNum);
 
     Observable<BaseResponse<List<BannerData>>> getBannerData();

@@ -32,6 +32,11 @@ public class HttpImpl implements IHttp {
     }
 
     @Override
+    public Observable<BaseResponse<LoginData>> logout() {
+        return mApiService.logout();
+    }
+
+    @Override
     public Observable<BaseResponse<ArticleListBean>> getArticleList(int pageNum) {
         return mApiService.getArticleList(pageNum);
     }

@@ -35,6 +35,7 @@ import com.carter.javaAndroid.modules.main.presenter.MainActivityPresenter;
 import com.carter.javaAndroid.modules.navigation.ui.NavigationFragment;
 import com.carter.javaAndroid.modules.project.ui.ProjectFragment;
 import com.carter.javaAndroid.modules.wxarticle.ui.WxArticleFragment;
+import com.carter.javaAndroid.utils.CommonUtils;
 import com.carter.javaAndroid.utils.ToastUtils;
 
 
@@ -104,22 +105,33 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         mNavigationView.setNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.nav_item_my_collect:
-                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    if (mPresenter.getLoginStatus()) {
+                        ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY).
+                                withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_COLLECT).navigation();
+                    } else {
+                        ToastUtils.showToast(this, menuItem.getItemId() + "");
+                        CommonUtils.startLoginActivity();
+                    }
                     break;
                 case R.id.nav_item_todo:
-                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    if (mPresenter.getLoginStatus()) {
+                        ARouter.getInstance().build(ARouterPath.TODO_ACTIVITY).navigation();
+                    } else {
+                        ToastUtils.showToast(this, menuItem.getItemId() + "");
+                        CommonUtils.startLoginActivity();
+                    }
                     break;
                 case R.id.nav_item_night_mode:
-                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    ToastUtils.showToast(this, menuItem.getItemId() + "");
                     break;
                 case R.id.nav_item_setting:
-                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    ToastUtils.showToast(this, menuItem.getItemId() + "");
                     break;
                 case R.id.nav_item_about_us:
-                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    ToastUtils.showToast(this, menuItem.getItemId() + "");
                     break;
                 case R.id.nav_item_logout:
-                    ToastUtils.showToast(this,menuItem.getItemId()+"");
+                    mPresenter.logout();
                 default:
                     break;
             }
@@ -127,7 +139,8 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         });
         mUsTv = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_login);
         mUsTv.setText(mPresenter.getLoginStatus() ? mPresenter.getLoginAccount() : getString(R.string.login));
-        mUsTv.setOnClickListener(v -> {});
+        mUsTv.setOnClickListener(v -> {
+        });
     }
 
     private void showFragment(int index) {

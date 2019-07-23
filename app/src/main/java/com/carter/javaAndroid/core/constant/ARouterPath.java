@@ -16,4 +16,6 @@ public class ARouterPath {
 
     public static final String SEARCH_ACTIVITY = "/app/searchActivity";
 
+    public static final String TODO_ACTIVITY = "/app/todoActivity";
+
 }

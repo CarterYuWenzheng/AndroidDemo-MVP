@@ -34,6 +34,11 @@ public class DataManager implements IHttp, IPreference {
     }
 
     @Override
+    public Observable<BaseResponse<LoginData>> logout() {
+        return mIHttp.logout();
+    }
+
+    @Override
     public void setLoginStatus(boolean isLogin) {
         mIPreference.setLoginStatus(isLogin);
     }
