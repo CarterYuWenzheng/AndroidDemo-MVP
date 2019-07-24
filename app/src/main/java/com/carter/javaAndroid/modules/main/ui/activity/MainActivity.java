@@ -109,7 +109,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                         ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY).
                                 withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_COLLECT).navigation();
                     } else {
-                        ToastUtils.showToast(this, menuItem.getItemId() + "");
+                        ToastUtils.showToast(this, "请先登录");
                         CommonUtils.startLoginActivity();
                     }
                     break;
@@ -117,7 +117,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                     if (mPresenter.getLoginStatus()) {
                         ARouter.getInstance().build(ARouterPath.TODO_ACTIVITY).navigation();
                     } else {
-                        ToastUtils.showToast(this, menuItem.getItemId() + "");
+                        ToastUtils.showToast(this, "请先登录");
                         CommonUtils.startLoginActivity();
                     }
                     break;
@@ -277,6 +277,20 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.syncState();
         mDrawerLayout.addDrawerListener(toggle);
+    }
+
+    @Override
+    public void handleLoginSuccess() {
+        mUsTv.setText(mPresenter.getLoginAccount());
+        mUsTv.setOnClickListener(null);
+        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(true);
+    }
+
+    @Override
+    public void handleLogoutSuccess() {
+        mUsTv.setText(getString(R.string.login));
+        mUsTv.setOnClickListener(v -> CommonUtils.startLoginActivity());
+        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
     }
 
     @Override

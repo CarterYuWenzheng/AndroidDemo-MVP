@@ -10,5 +10,5 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:layout_gravity="center"
-    android:text="dadaf"/>
+    android:text="常用工具"/>
 </LinearLayout>
