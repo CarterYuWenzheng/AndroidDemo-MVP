@@ -139,8 +139,7 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
         });
         mUsTv = mNavigationView.getHeaderView(0).findViewById(R.id.nav_header_login);
         mUsTv.setText(mPresenter.getLoginStatus() ? mPresenter.getLoginAccount() : getString(R.string.login));
-        mUsTv.setOnClickListener(v -> {
-        });
+        mUsTv.setOnClickListener(v -> ARouter.getInstance().build(ARouterPath.LOGIN_ACTIVITY).navigation());
     }
 
     private void showFragment(int index) {

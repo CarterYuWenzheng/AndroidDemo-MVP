@@ -4,13 +4,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.activity.BaseActivity;
+import com.carter.javaAndroid.core.constant.ARouterPath;
 import com.carter.javaAndroid.modules.login.contract.LoginContract;
 import com.carter.javaAndroid.modules.login.presenter.LoginPresenter;
 
 import butterknife.BindView;
 
+@Route(path = ARouterPath.LOGIN_ACTIVITY)
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
     @BindView(R.id.toolbar)

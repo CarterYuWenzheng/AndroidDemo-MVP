@@ -1,6 +1,7 @@
 package com.carter.javaAndroid.modules.main.presenter;
 
 import com.carter.javaAndroid.base.presenter.BasePresenter;
+import com.carter.javaAndroid.core.event.LoginEvent;
 import com.carter.javaAndroid.core.event.LogoutEvent;
 import com.carter.javaAndroid.core.rx.BaseObserver;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
@@ -8,6 +9,7 @@ import com.carter.javaAndroid.modules.main.contract.MainActivityContract;
 import com.carter.javaAndroid.utils.RxUtils;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -22,6 +24,12 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
     public void registerEventBus() {
         EventBus.getDefault().register(this);
     }
+
+    @Subscribe
+    public void loginSuccessEvent(LoginEvent loginEvent) {
+        mView.handleLoginSuccess();
+    }
+
 
     @Override
     public void unregisterEventBus() {
