@@ -10,4 +10,29 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Inject
     SearchPresenter() {
     }
+
+    @Override
+    public void getTopSearchData() {
+
+    }
+
+    @Override
+    public void addHistoryData(String data) {
+
+    }
+
+    @Override
+    public void clearAllHistoryData() {
+
+    }
+
+    @Override
+    public void deleteHistoryDataById(long id) {
+
+    }
+
+    @Override
+    public void loadAllHistoryData() {
+
+    }
 }

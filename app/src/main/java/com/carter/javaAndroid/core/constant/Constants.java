@@ -47,6 +47,7 @@ public class Constants {
     public static final int FRAGMENT_PROJECT = 4;
 
     public static final int TYPE_COLLECT = 5;
+    public static final int TYPE_SEARCH_RESULT = 8;
 
     public static final String TYPE_FRAGMENT_KEY = "type_fragment";
     public static final String CURRENT_FRAGMENT_KEY = "current_fragment";
@@ -56,6 +57,7 @@ public class Constants {
     public static final String PROJECT_CID = "project_cid";
     public static final String KNOWLEDGE_DATA = "knowledge_data";
 
+    public static final String SEARCH_KEY = "search_key";
     /**
      * EventBus Tag
      */
