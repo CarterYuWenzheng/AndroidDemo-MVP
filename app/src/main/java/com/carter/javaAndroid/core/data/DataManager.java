@@ -1,5 +1,6 @@
 package com.carter.javaAndroid.core.data;
 
+import com.carter.javaAndroid.core.db.bean.HistoryBean;
 import com.carter.javaAndroid.core.http.BaseResponse;
 import com.carter.javaAndroid.core.http.HttpImpl;
 import com.carter.javaAndroid.core.http.IHttp;
@@ -14,6 +15,7 @@ import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -133,4 +135,10 @@ public class DataManager implements IHttp, IPreference {
     public Observable<BaseResponse<List<TopSearchBean>>> getTopSearchData() {
         return mIHttp.getTopSearchData();
     }
+
+    //TODO create DbHelper
+//    @Override
+//    public List<HistoryBean> addHistoryData(String data) {
+//        return new ArrayList();
+//    }
 }

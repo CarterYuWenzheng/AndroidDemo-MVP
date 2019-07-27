@@ -1,6 +1,7 @@
 package com.carter.javaAndroid.modules.main.presenter;
 
 import com.carter.javaAndroid.base.presenter.BasePresenter;
+import com.carter.javaAndroid.core.db.bean.HistoryBean;
 import com.carter.javaAndroid.core.rx.BaseObserver;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
@@ -10,6 +11,9 @@ import com.carter.javaAndroid.utils.RxUtils;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
 
 public class SearchPresenter extends BasePresenter<SearchContract.View> implements SearchContract.Presenter {
 
@@ -32,7 +36,13 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void addHistoryData(String data) {
-
+        addSubscribe(Observable.create((ObservableOnSubscribe<List<HistoryBean>>) e -> {
+//            List<HistoryBean> historyBeans = mDataManager.addHistoryData(data);
+//            e.onNext(historyBeans);
+        })
+        .compose(RxUtils.SchedulerTransformer())
+        .filter(articleListBean -> mView != null)
+        .subscribe(historyBeanList -> {}));
     }
 
     @Override
