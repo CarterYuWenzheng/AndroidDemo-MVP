@@ -7,6 +7,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleItemBean;
 import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
+import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
@@ -94,5 +95,10 @@ public class HttpImpl implements IHttp {
     @Override
     public Observable<BaseResponse<ArticleListBean>> getKnowledgeListData(int page, int cid) {
         return mApiService.getKnowledgeListData(page, cid);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<TopSearchBean>>> getTopSearchData() {
+        return mApiService.getTopSearchData();
     }
 }
