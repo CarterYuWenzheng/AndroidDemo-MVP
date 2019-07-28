@@ -8,6 +8,7 @@ import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
 import com.carter.javaAndroid.modules.main.contract.SearchContract;
 import com.carter.javaAndroid.utils.RxUtils;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -47,16 +48,25 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
 
     @Override
     public void clearAllHistoryData() {
-
+        mDataManager.clearAllHistoryData();
     }
 
     @Override
     public void deleteHistoryDataById(long id) {
-
+        mDataManager.deleteHistoryDataById(id);
     }
 
     @Override
     public void loadAllHistoryData() {
-
+        addSubscribe(Observable.create((ObservableOnSubscribe<List<HistoryBean>>) e -> {
+            //TODO
+//            List<HistoryBean> historyDataList = mDataManager.loadAllHistoryData();
+        })
+        .compose(RxUtils.SchedulerTransformer())
+        .filter(articleListBean -> mView != null)
+        .subscribe(historyDataList -> {
+            Collections.reverse(historyDataList);
+            mView.showHistoryData(historyDataList);
+        }));
     }
 }

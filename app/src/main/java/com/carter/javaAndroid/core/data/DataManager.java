@@ -141,4 +141,14 @@ public class DataManager implements IHttp, IPreference {
 //    public List<HistoryBean> addHistoryData(String data) {
 //        return new ArrayList();
 //    }
+
+//    @Override
+    public void clearAllHistoryData() {
+//        mDbHelper.clearAllHistoryData();
+    }
+
+//    @Override
+    public void deleteHistoryDataById(Long id) {
+//        mDbHelper.deleteHistoryDataById(id);
+    }
 }
