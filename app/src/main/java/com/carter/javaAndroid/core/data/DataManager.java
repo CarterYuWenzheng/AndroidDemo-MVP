@@ -21,13 +21,14 @@ import io.reactivex.Observable;
 
 public class DataManager implements IHttp, IPreference, DbHelper {
 
-
     private IHttp mIHttp;
     private IPreference mIPreference;
+    private DbHelper mDbHelper;
 
-    public DataManager(IHttp iHttp, IPreference iPreference) {
+    public DataManager(IHttp iHttp, IPreference iPreference, DbHelper dbHelper) {
         mIHttp = iHttp;
         mIPreference = iPreference;
+        mDbHelper = dbHelper;
     }
 
     @Override
@@ -142,12 +143,12 @@ public class DataManager implements IHttp, IPreference, DbHelper {
 
     @Override
     public void clearAllHistoryData() {
-//        mDbHelper.clearAllHistoryData();
+        mDbHelper.clearAllHistoryData();
     }
 
     @Override
     public void deleteHistoryDataById(Long id) {
-//        mDbHelper.deleteHistoryDataById(id);
+        mDbHelper.deleteHistoryDataById(id);
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.carter.javaAndroid.di.module;
 
 import com.carter.javaAndroid.Application.MyApplication;
 import com.carter.javaAndroid.core.data.DataManager;
+import com.carter.javaAndroid.core.db.DbHelper;
+import com.carter.javaAndroid.core.db.DbHelperImpl;
 import com.carter.javaAndroid.core.http.HttpImpl;
 import com.carter.javaAndroid.core.http.IHttp;
 import com.carter.javaAndroid.core.preference.IPreference;
@@ -34,13 +36,19 @@ public class AppModule {
 
     @Provides
     @Singleton
+    DbHelper providerHttpHelper(DbHelperImpl dbHelperImpl) {
+        return dbHelperImpl;
+    }
+
+    @Provides
+    @Singleton
     IPreference providePreferenceHelper(PreferenceImpl preference) {
         return preference;
     }
 
     @Provides
     @Singleton
-    DataManager provideDataManager(IHttp httpHelper, IPreference preferenceHelper) {
-        return new DataManager(httpHelper, preferenceHelper);
+    DataManager provideDataManager(IHttp httpHelper, IPreference preferenceHelper, DbHelper dbHelper) {
+        return new DataManager(httpHelper, preferenceHelper, dbHelper);
     }
 }
