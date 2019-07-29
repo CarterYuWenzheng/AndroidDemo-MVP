@@ -1,5 +1,6 @@
 package com.carter.javaAndroid.core.db;
 
+import com.carter.javaAndroid.Application.MyApplication;
 import com.carter.javaAndroid.core.db.bean.HistoryBean;
 
 import java.util.List;
@@ -13,13 +14,18 @@ public class DbHelperImpl implements DbHelper {
     private List<HistoryBean> historyBeanList;
     private String data;
     private HistoryBean historyBean;
+    private MyDatabase myDatabase;
 
     @Inject
-    DbHelperImpl(){}
+    DbHelperImpl(){initDatabase();}
+
+    private void initDatabase() {
+        myDatabase = MyDatabase.getInstance(MyApplication.getContext());
+    }
 
     @Override
     public List<HistoryBean> addHistoryData(String data) {
-        return null;
+        return myDatabase.getHistoryDao().getAllHistory();
     }
 
     @Override
@@ -34,6 +40,6 @@ public class DbHelperImpl implements DbHelper {
 
     @Override
     public List<HistoryBean> loadAllHistoryData() {
-        return null;
+        return myDatabase.getHistoryDao().getAllHistory();
     }
 }

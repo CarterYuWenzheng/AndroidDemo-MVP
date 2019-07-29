@@ -6,6 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 import com.carter.javaAndroid.core.db.bean.User;
+import com.carter.javaAndroid.core.db.dao.HistoryDao;
 import com.carter.javaAndroid.core.db.dao.UserDao;
 
 @Database(entities = {User.class}, version = 1, exportSchema = false)
@@ -30,5 +31,7 @@ public abstract class MyDatabase extends RoomDatabase {
     }
 
     public abstract UserDao getUserDao();
+
+    public abstract HistoryDao getHistoryDao();
 
 }

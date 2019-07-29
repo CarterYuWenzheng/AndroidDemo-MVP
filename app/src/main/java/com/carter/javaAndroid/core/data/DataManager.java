@@ -138,7 +138,7 @@ public class DataManager implements IHttp, IPreference, DbHelper {
 
     @Override
     public List<HistoryBean> addHistoryData(String data) {
-        return null;
+        return mDbHelper.addHistoryData(data);
     }
 
     @Override
@@ -153,6 +153,6 @@ public class DataManager implements IHttp, IPreference, DbHelper {
 
     @Override
     public List<HistoryBean> loadAllHistoryData() {
-        return null;
+        return mDbHelper.loadAllHistoryData();
     }
 }
