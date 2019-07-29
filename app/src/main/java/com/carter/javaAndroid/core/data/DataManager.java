@@ -1,8 +1,8 @@
 package com.carter.javaAndroid.core.data;
 
+import com.carter.javaAndroid.core.db.DbHelper;
 import com.carter.javaAndroid.core.db.bean.HistoryBean;
 import com.carter.javaAndroid.core.http.BaseResponse;
-import com.carter.javaAndroid.core.http.HttpImpl;
 import com.carter.javaAndroid.core.http.IHttp;
 import com.carter.javaAndroid.core.preference.IPreference;
 import com.carter.javaAndroid.modules.homepager.banner.BannerData;
@@ -15,25 +15,24 @@ import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
 
-public class DataManager implements IHttp, IPreference {
+public class DataManager implements IHttp, IPreference, DbHelper {
 
 
     private IHttp mIHttp;
     private IPreference mIPreference;
 
-    public DataManager(IHttp iHttp,IPreference iPreference){
+    public DataManager(IHttp iHttp, IPreference iPreference) {
         mIHttp = iHttp;
         mIPreference = iPreference;
     }
 
     @Override
     public Observable<BaseResponse<LoginData>> login(String username, String password) {
-        return mIHttp.login(username,password);
+        return mIHttp.login(username, password);
     }
 
     @Override
@@ -136,19 +135,23 @@ public class DataManager implements IHttp, IPreference {
         return mIHttp.getTopSearchData();
     }
 
-    //TODO create DbHelper
-//    @Override
-//    public List<HistoryBean> addHistoryData(String data) {
-//        return new ArrayList();
-//    }
+    @Override
+    public List<HistoryBean> addHistoryData(String data) {
+        return null;
+    }
 
-//    @Override
+    @Override
     public void clearAllHistoryData() {
 //        mDbHelper.clearAllHistoryData();
     }
 
-//    @Override
+    @Override
     public void deleteHistoryDataById(Long id) {
 //        mDbHelper.deleteHistoryDataById(id);
+    }
+
+    @Override
+    public List<HistoryBean> loadAllHistoryData() {
+        return null;
     }
 }
