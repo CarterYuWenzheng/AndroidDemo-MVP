@@ -38,8 +38,8 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Override
     public void addHistoryData(String data) {
         addSubscribe(Observable.create((ObservableOnSubscribe<List<HistoryBean>>) e -> {
-//            List<HistoryBean> historyBeans = mDataManager.addHistoryData(data);
-//            e.onNext(historyBeans);
+            List<HistoryBean> historyBeans = mDataManager.addHistoryData(data);
+            e.onNext(historyBeans);
         })
         .compose(RxUtils.SchedulerTransformer())
         .filter(articleListBean -> mView != null)
@@ -59,8 +59,8 @@ public class SearchPresenter extends BasePresenter<SearchContract.View> implemen
     @Override
     public void loadAllHistoryData() {
         addSubscribe(Observable.create((ObservableOnSubscribe<List<HistoryBean>>) e -> {
-            //TODO
-//            List<HistoryBean> historyDataList = mDataManager.loadAllHistoryData();
+            List<HistoryBean> historyDataList = mDataManager.loadAllHistoryData();
+            e.onNext(historyDataList);
         })
         .compose(RxUtils.SchedulerTransformer())
         .filter(articleListBean -> mView != null)

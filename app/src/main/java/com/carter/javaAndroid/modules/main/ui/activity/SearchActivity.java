@@ -107,7 +107,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
     }
 
     private void goToSearchResult(String searchString){
-        mPresenter.addHistoryData(searchString);;
+        mPresenter.addHistoryData(searchString);
         Intent intent = new Intent(SearchActivity.this, CommonActivity.class);
         intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SEARCH_RESULT);
         intent.putExtra(Constants.SEARCH_KEY, searchString);
