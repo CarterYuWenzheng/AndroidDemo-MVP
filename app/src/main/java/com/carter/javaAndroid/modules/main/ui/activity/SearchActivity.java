@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.carter.javaAndroid.R;
 import com.carter.javaAndroid.base.activity.BaseActivity;
 import com.carter.javaAndroid.core.constant.ARouterPath;
@@ -108,10 +109,10 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
 
     private void goToSearchResult(String searchString){
         mPresenter.addHistoryData(searchString);
-        Intent intent = new Intent(SearchActivity.this, CommonActivity.class);
-        intent.putExtra(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SEARCH_RESULT);
-        intent.putExtra(Constants.SEARCH_KEY, searchString);
-        startActivity(intent);
+        ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY)
+                .withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SEARCH_RESULT)
+                .withString(Constants.SEARCH_KEY, searchString)
+                .navigation();
     }
 
     private void clickChildEvent(View view,int position){
