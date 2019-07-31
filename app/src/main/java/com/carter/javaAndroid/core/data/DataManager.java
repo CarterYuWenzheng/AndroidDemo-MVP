@@ -155,4 +155,9 @@ public class DataManager implements IHttp, IPreference, DbHelper {
     public List<HistoryBean> loadAllHistoryData() {
         return mDbHelper.loadAllHistoryData();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getSearchResultList(int pageNum, String k) {
+        return mIHttp.getSearchResultList(pageNum, k);
+    }
 }

@@ -173,4 +173,16 @@ public interface ApiService {
      */
     @GET("user/logout/json")
     Observable<BaseResponse<LoginData>> logout();
+
+    /**
+     * 搜索
+     * https://www.wanandroid.com/article/query/0/json
+     *
+     * @param page page
+     * @param k    POST search key
+     * @return 搜索数据
+     */
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListBean>> getSearchResultList(@Path("page") int page, @Field("k") String k);
 }

@@ -47,4 +47,5 @@ public interface IHttp {
 
     Observable<BaseResponse<List<TopSearchBean>>> getTopSearchData();
 
+    Observable<BaseResponse<ArticleListBean>> getSearchResultList(int pageNum, String k);
 }

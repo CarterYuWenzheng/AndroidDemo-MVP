@@ -14,6 +14,7 @@ import com.carter.javaAndroid.core.constant.ARouterPath;
 import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.main.contract.CommonContract;
 import com.carter.javaAndroid.modules.main.presenter.CommonPresenter;
+import com.carter.javaAndroid.modules.main.ui.fragment.SearchResultFragment;
 
 import butterknife.BindView;
 
@@ -57,8 +58,7 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
         String title = "";
         switch (fragmentType) {
             case Constants.TYPE_SEARCH_RESULT:
-                //TODO
-                mTargetFragment = null;
+                mTargetFragment = SearchResultFragment.newInstance(extras);
                 assert extras != null;
                 title = extras.getString(Constants.SEARCH_KEY, "");
                 break;

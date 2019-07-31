@@ -101,4 +101,9 @@ public class HttpImpl implements IHttp {
     public Observable<BaseResponse<List<TopSearchBean>>> getTopSearchData() {
         return mApiService.getTopSearchData();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getSearchResultList(int pageNum, String k) {
+        return mApiService.getSearchResultList(pageNum, k);
+    }
 }
