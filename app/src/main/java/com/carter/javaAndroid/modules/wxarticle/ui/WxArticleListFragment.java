@@ -19,6 +19,8 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.wxarticle.contract.WxArticleContract;
 import com.carter.javaAndroid.modules.wxarticle.contract.WxArticleListContract;
 import com.carter.javaAndroid.modules.wxarticle.presenter.WxArticleListPresenter;
+import com.carter.javaAndroid.utils.CommonUtils;
+import com.carter.javaAndroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -55,8 +57,7 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
         mArticleList = new ArrayList<>();
         mAdapter = new WxArticleListAdapter(R.layout.adapter_wx_article_list_item, mArticleList);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
-        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-        });
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
@@ -122,13 +123,40 @@ public class WxArticleListFragment extends BaseFragment<WxArticleListPresenter> 
         }
     }
 
+    private void clickChildEvent(View view, int position) {
+        switch (view.getId()) {
+            case R.id.item_project_list_like_iv:
+                collectClickEvent(position);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void collectClickEvent(int position) {
+        if (mPresenter.getLoginStatus()) {
+            if (mAdapter.getData().get(position).isCollect()) {
+                mPresenter.cancelCollectArticle(position, mAdapter.getData().get(position).getId());
+            } else {
+                mPresenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
+            }
+        } else {
+            CommonUtils.startLoginActivity();
+            ToastUtils.showToast(_mActivity, getString(R.string.login_first));
+        }
+    }
+
     @Override
     public void showCollectSuccess(int position) {
-
+        mAdapter.getData().get(position).setCollect(true);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.collect_success));
     }
 
     @Override
     public void showCancelCollectSuccess(int position) {
-
+        mAdapter.getData().get(position).setCollect(false);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.cancel_collect));
     }
 }

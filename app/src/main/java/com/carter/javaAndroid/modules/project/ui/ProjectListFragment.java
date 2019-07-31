@@ -15,6 +15,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.project.contract.ProjectListContract;
 import com.carter.javaAndroid.modules.project.presenter.ProjectListPresenter;
 import com.carter.javaAndroid.utils.CommonUtils;
+import com.carter.javaAndroid.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -50,13 +51,35 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
     private void initRecyclerView() {
         mArticleList = new ArrayList<>();
         mAdapter = new ProjectListAdapter(R.layout.adapter_project_list_item, mArticleList);
-        mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view,position));
-        mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
-        });
+        mAdapter.setOnItemClickListener((adapter, view, position) -> startArticleDetailPager(view, position));
+        mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view, position));
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void clickChildEvent(View view, int position) {
+        switch (view.getId()) {
+            case R.id.item_project_list_like_iv:
+                collectClickEvent(position);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void collectClickEvent(int position) {
+        if (mPresenter.getLoginStatus()) {
+            if (mAdapter.getData().get(position).isCollect()) {
+                mPresenter.cancelCollectArticle(position, mAdapter.getData().get(position).getId());
+            } else {
+                mPresenter.addCollectArticle(position, mAdapter.getData().get(position).getId());
+            }
+        } else {
+            CommonUtils.startLoginActivity();
+            ToastUtils.showToast(_mActivity, getString(R.string.login_first));
+        }
     }
 
     private void startArticleDetailPager(View view, int position) {
@@ -120,11 +143,15 @@ public class ProjectListFragment extends BaseFragment<ProjectListPresenter> impl
 
     @Override
     public void showCollectSuccess(int position) {
-
+        mAdapter.getData().get(position).setCollect(true);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.collect_success));
     }
 
     @Override
     public void showCancelCollectSuccess(int position) {
-
+        mAdapter.getData().get(position).setCollect(false);
+        mAdapter.setData(position, mAdapter.getData().get(position));
+        ToastUtils.showToast(_mActivity, getString(R.string.cancel_collect));
     }
 }
