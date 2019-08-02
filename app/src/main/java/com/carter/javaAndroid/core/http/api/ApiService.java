@@ -7,6 +7,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
+import com.carter.javaAndroid.modules.main.bean.UsefulSiteBean;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
@@ -185,4 +186,14 @@ public interface ApiService {
     @POST("article/query/{page}/json")
     @FormUrlEncoded
     Observable<BaseResponse<ArticleListBean>> getSearchResultList(@Path("page") int page, @Field("k") String k);
+
+
+    /**
+     * 常用网站
+     * https://www.wanandroid.com/friend/json
+     *
+     * @return 常用网站数据
+     */
+    @GET("friend/json")
+    Observable<BaseResponse<List<UsefulSiteBean>>> getUsefulSites();
 }

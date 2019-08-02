@@ -11,6 +11,7 @@ import com.carter.javaAndroid.modules.homepager.bean.ArticleListBean;
 import com.carter.javaAndroid.modules.knowledge.bean.KnowledgeTreeBean;
 import com.carter.javaAndroid.modules.login.bean.LoginData;
 import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
+import com.carter.javaAndroid.modules.main.bean.UsefulSiteBean;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
@@ -159,5 +160,10 @@ public class DataManager implements IHttp, IPreference, DbHelper {
     @Override
     public Observable<BaseResponse<ArticleListBean>> getSearchResultList(int pageNum, String k) {
         return mIHttp.getSearchResultList(pageNum, k);
+    }
+
+    @Override
+    public Observable<BaseResponse<List<UsefulSiteBean>>> getUsefulSites() {
+        return mIHttp.getUsefulSites();
     }
 }
