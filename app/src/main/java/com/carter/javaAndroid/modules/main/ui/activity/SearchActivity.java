@@ -88,9 +88,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
             }
             goToSearchResult(mAdapter.getData().get(position).getData());
         });
-        mAdapter.setOnItemClickListener((adapter, view, position) -> {
-            clickChildEvent(view,position);
-        });
+        mAdapter.setOnItemClickListener((adapter, view, position) -> clickChildEvent(view,position));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
         mAdapter.bindToRecyclerView(mRecyclerView);
