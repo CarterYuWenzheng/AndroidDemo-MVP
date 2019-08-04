@@ -47,6 +47,7 @@ public class Constants {
     public static final int FRAGMENT_PROJECT = 4;
 
     public static final int TYPE_COLLECT = 5;
+    public static final int TYPE_USEFULSITES = 7;
     public static final int TYPE_SEARCH_RESULT = 8;
 
     public static final String TYPE_FRAGMENT_KEY = "type_fragment";
