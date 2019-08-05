@@ -100,7 +100,7 @@
                 android:layout_toRightOf="@id/tv_article_tag"
                 android:gravity="center"
                 android:textColor="@color/item_author"
-                android:textSize="@dimen/item_tv_author"
+                android:textSize="12sp"
                 tools:text="author" />
 
             <TextView
@@ -114,7 +114,7 @@
                 android:layout_toRightOf="@id/tv_article_author"
                 android:gravity="end"
                 android:textColor="@color/item_author"
-                android:textSize="@dimen/item_tv_author"
+                android:textSize="12sp"
                 tools:text="super/chapterName" />
         </RelativeLayout>
 
@@ -146,7 +146,7 @@
                 android:lineSpacingExtra="2dp"
                 android:maxLines="2"
                 android:textColor="@color/item_title"
-                android:textSize="@dimen/item_title_size"
+                android:textSize="12sp"
                 tools:text="WanAndroid" />
 
         </RelativeLayout>
@@ -175,7 +175,7 @@
                 android:layout_toRightOf="@id/iv_article_like"
                 android:gravity="center_vertical"
                 android:textColor="@color/item_author"
-                android:textSize="@dimen/item_tv_author"
+                android:textSize="12sp"
                 tools:text="2019-01-01" />
         </RelativeLayout>
 

@@ -166,4 +166,14 @@ public class DataManager implements IHttp, IPreference, DbHelper {
     public Observable<BaseResponse<List<UsefulSiteBean>>> getUsefulSites() {
         return mIHttp.getUsefulSites();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getCollectList(int page) {
+        return mIHttp.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(int id, int originId) {
+        return mIHttp.cancelCollectInCollectPage(id, originId);
+    }
 }

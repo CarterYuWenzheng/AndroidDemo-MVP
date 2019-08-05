@@ -51,4 +51,8 @@ public interface IHttp {
     Observable<BaseResponse<ArticleListBean>> getSearchResultList(int pageNum, String k);
 
     Observable<BaseResponse<List<UsefulSiteBean>>> getUsefulSites();
+
+    Observable<BaseResponse<ArticleListBean>> getCollectList(int page);
+
+    Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(int id, int originId);
 }

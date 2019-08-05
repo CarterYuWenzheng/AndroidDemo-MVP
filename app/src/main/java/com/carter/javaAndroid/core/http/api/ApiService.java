@@ -196,4 +196,29 @@ public interface ApiService {
      */
     @GET("friend/json")
     Observable<BaseResponse<List<UsefulSiteBean>>> getUsefulSites();
+
+
+    /**
+     * 获取收藏列表
+     * https://www.wanandroid.com/lg/collect/list/0/json
+     *
+     * @param page page number
+     * @return 收藏列表数据
+     */
+    @GET("lg/collect/list/{page}/json")
+    Observable<BaseResponse<ArticleListBean>> getCollectList(@Path("page") int page);
+
+    /**
+     * 收藏列表中取消收藏文章
+     * https://www.wanandroid.com/lg/uncollect/2805/json
+     *
+     * @param id       article id
+     * @param originId originId 代表的是你收藏之前的那篇文章本身的id；
+     *                 但是收藏支持主动添加，这种情况下，没有originId则为-1
+     * @return 取消收藏列表中文章数据
+     */
+    @POST("lg/uncollect/{id}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(@Path("id") int id, @Field("originId") int originId);
+
 }

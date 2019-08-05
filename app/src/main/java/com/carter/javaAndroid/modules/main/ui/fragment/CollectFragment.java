@@ -24,7 +24,6 @@ import butterknife.BindView;
 
 public class CollectFragment extends BaseFragment<CollectPresenter> implements CollectContract.View {
 
-
     @BindView(R.id.collect_smart_refresh_layout)
     SmartRefreshLayout mRefreshLayout;
     @BindView(R.id.collect_recycler_view)

@@ -112,4 +112,14 @@ public class HttpImpl implements IHttp {
     public Observable<BaseResponse<List<UsefulSiteBean>>> getUsefulSites() {
         return mApiService.getUsefulSites();
     }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> getCollectList(int page) {
+        return mApiService.getCollectList(page);
+    }
+
+    @Override
+    public Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(int id, int originId) {
+        return mApiService.cancelCollectInCollectPage(id, originId);
+    }
 }
