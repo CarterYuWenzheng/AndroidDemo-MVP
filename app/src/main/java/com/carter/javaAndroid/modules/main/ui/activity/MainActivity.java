@@ -308,7 +308,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                 break;
             case R.id.action_usage:
                 ToastUtils.showToast(this, "常用工具");
-                ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY).navigation();
+                ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY)
+                        .withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_USEFULSITES)
+                        .navigation();
                 break;
             default:
                 break;
