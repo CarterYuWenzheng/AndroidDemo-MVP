@@ -14,6 +14,7 @@ import com.carter.javaAndroid.core.constant.ARouterPath;
 import com.carter.javaAndroid.core.constant.Constants;
 import com.carter.javaAndroid.modules.main.contract.CommonContract;
 import com.carter.javaAndroid.modules.main.presenter.CommonPresenter;
+import com.carter.javaAndroid.modules.main.ui.fragment.CollectFragment;
 import com.carter.javaAndroid.modules.main.ui.fragment.SearchResultFragment;
 import com.carter.javaAndroid.modules.main.ui.fragment.UsefulSiteFragment;
 
@@ -66,6 +67,10 @@ public class CommonActivity extends BaseActivity<CommonPresenter> implements Com
                 mTargetFragment = SearchResultFragment.newInstance(extras);
                 assert extras != null;
                 title = extras.getString(Constants.SEARCH_KEY, "");
+                break;
+            case Constants.TYPE_COLLECT:
+                mTargetFragment = CollectFragment.newInstance();
+                title = getString(R.string.collect);
                 break;
             default:
                 break;
