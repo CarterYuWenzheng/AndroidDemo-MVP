@@ -10,18 +10,23 @@ import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
 import com.carter.javaAndroid.modules.main.bean.UsefulSiteBean;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
+import com.carter.javaAndroid.modules.todo.bean.TodoItemBean;
+import com.carter.javaAndroid.modules.todo.bean.TodoListBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface ApiService {
 
@@ -221,4 +226,75 @@ public interface ApiService {
     @FormUrlEncoded
     Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(@Path("id") int id, @Field("originId") int originId);
 
+    /**
+     * 新增一条TODO
+     * https://www.wanandroid.com/lg/todo/add/json
+     * <p>
+     * title: 新增标题（必须）
+     * content: 新增详情（可选）
+     * date: 2018-08-01 预定完成时间（不传默认当天，建议传）
+     * type: 大于0的整数（可选）；
+     * priority 大于0的整数（可选）；
+     *
+     * @return
+     */
+    @POST("lg/todo/add/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<TodoItemBean>> addTodo(@FieldMap Map<String, Object> map);
+
+    /**
+     * 更新一条TODO
+     * https://www.wanandroid.com/lg/todo/update/{id}/json
+     * <p>
+     * id: 拼接在链接上，为唯一标识
+     * title: 更新标题 （必须）
+     * content: 新增详情（必须）
+     * date: 2018-08-01（必须）
+     * status: 0 // 0为未完成，1为完成
+     * type: ；
+     * priority: ；
+     *
+     * @return
+     */
+    @POST("lg/todo/update/{id}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<TodoItemBean>> updateTodo(@Path("id") int id, @FieldMap Map<String, Object> map);
+
+    /**
+     * 获取TODO列表
+     * https://www.wanandroid.com/lg/todo/v2/list/{page}/json
+     * <p>
+     * 页码从1开始，拼接在url 上
+     * status 状态， 1-完成；0未完成; 默认全部展示；
+     * type 创建时传入的类型, 默认全部展示
+     * priority 创建时传入的优先级；默认全部展示
+     * orderby 1:完成日期顺序；2.完成日期逆序；3.创建日期顺序；4.创建日期逆序(默认)；（1和2只能获取到已完成的TODO）
+     *
+     * @return
+     */
+    @GET("lg/todo/v2/list/{page}/json")
+    Observable<BaseResponse<TodoListBean>> getTodoListData(@Path("page") int page, @QueryMap Map<String, Object> map);
+    
+    /**
+     * 删除一条TODO
+     * https://www.wanandroid.com/lg/todo/delete/{id}/json
+     * <p>
+     * id: 拼接在链接上，为唯一标识
+
+     * @return
+     */
+    @POST("lg/todo/delete/{id}/json")
+    Observable<BaseResponse<TodoItemBean>> deleteTodo(@Path("id") int id);
+
+    /**
+     * 仅更新完成状态TODO
+     * https://www.wanandroid.com/lg/todo/done/{id}/json
+     * <p>
+     * id: 拼接在链接上，为唯一标识
+     * status: 0或1，传1代表未完成到已完成，反之则反之。
+     * @return
+     */
+    @POST("lg/todo/done/{id}/json")
+    @FormUrlEncoded
+    Observable<BaseResponse<TodoItemBean>> updateTodoStatus(@Path("id") int id, @Field("status") int status);
 }

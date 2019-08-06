@@ -14,9 +14,12 @@ import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
 import com.carter.javaAndroid.modules.main.bean.UsefulSiteBean;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
+import com.carter.javaAndroid.modules.todo.bean.TodoItemBean;
+import com.carter.javaAndroid.modules.todo.bean.TodoListBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
 
@@ -176,4 +179,31 @@ public class DataManager implements IHttp, IPreference, DbHelper {
     public Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(int id, int originId) {
         return mIHttp.cancelCollectInCollectPage(id, originId);
     }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> addTodo(Map<String, Object> map) {
+        return mIHttp.addTodo(map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> updateTodo(int id, Map<String, Object> map) {
+        return mIHttp.updateTodo(id, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoListBean>> getTodoListData(int page, Map<String, Object> map) {
+        return mIHttp.getTodoListData(page, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> deleteTodo(int id) {
+        return mIHttp.deleteTodo(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> updateTodoStatus(int id, int status) {
+        return mIHttp.updateTodoStatus(id, status);
+    }
+
+
 }

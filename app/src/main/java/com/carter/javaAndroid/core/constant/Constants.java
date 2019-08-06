@@ -73,4 +73,26 @@ public class Constants {
     public static final String WX_PAGER = "wx_pager";
     public static final String TAG_DEFAULT = "tag_default";
 
+    /**
+     * todo-tag
+     */
+    public static final String TODO_TYPE = "todo_type";
+    public static final String TODO_DATA = "todo_data";
+    public static final int TODO_TYPE_ALL = 0;
+    public static final int TODO_TYPE_WORK = 1;
+    public static final int TODO_TYPE_STUDY = 2;
+    public static final int TODO_TYPE_LIFE = 3;
+    public static final int TODO_TYPE_OTHER = 4;
+
+    public static final int TODO_PRIORITY_FIRST = 1;
+    public static final int TODO_PRIORITY_SECOND = 2;
+
+    public static final String KEY_TODO_TITLE = "title";
+    public static final String KEY_TODO_CONTENT = "content";
+    public static final String KEY_TODO_DATE = "date";
+    public static final String KEY_TODO_TYPE = "type";
+    public static final String KEY_TODO_STATUS = "status";
+    public static final String KEY_TODO_PRIORITY = "priority";
+    public static final String KEY_TODO_ORDERBY= "orderby";
+
 }

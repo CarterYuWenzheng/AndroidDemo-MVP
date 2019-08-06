@@ -18,4 +18,6 @@ public class ARouterPath {
 
     public static final String TODO_ACTIVITY = "/app/todoActivity";
 
+    public static final String ADD_TODO_ACTIVITY = "/app/addTodoActivity";
+
 }

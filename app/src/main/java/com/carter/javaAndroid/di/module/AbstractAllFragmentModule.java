@@ -13,6 +13,7 @@ import com.carter.javaAndroid.modules.main.ui.fragment.UsefulSiteFragment;
 import com.carter.javaAndroid.modules.navigation.ui.NavigationFragment;
 import com.carter.javaAndroid.modules.project.ui.ProjectFragment;
 import com.carter.javaAndroid.modules.project.ui.ProjectListFragment;
+import com.carter.javaAndroid.modules.todo.ui.TodoListFragment;
 import com.carter.javaAndroid.modules.wxarticle.ui.WxArticleFragment;
 import com.carter.javaAndroid.modules.wxarticle.ui.WxArticleListFragment;
 
@@ -64,4 +65,7 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = AboutFragmentModule.class)
     abstract AboutFragment contributesAboutFragmentInject();
+
+    @ContributesAndroidInjector(modules = TodoListFragmentModule.class)
+    abstract TodoListFragment contributesTodoListFragmentInject();
 }

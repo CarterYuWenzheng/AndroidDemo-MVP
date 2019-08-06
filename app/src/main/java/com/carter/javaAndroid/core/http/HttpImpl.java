@@ -11,9 +11,12 @@ import com.carter.javaAndroid.modules.main.bean.TopSearchBean;
 import com.carter.javaAndroid.modules.main.bean.UsefulSiteBean;
 import com.carter.javaAndroid.modules.navigation.bean.NavigationListBean;
 import com.carter.javaAndroid.modules.project.bean.ProjectTreeBean;
+import com.carter.javaAndroid.modules.todo.bean.TodoItemBean;
+import com.carter.javaAndroid.modules.todo.bean.TodoListBean;
 import com.carter.javaAndroid.modules.wxarticle.bean.WxChapterBean;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -121,5 +124,31 @@ public class HttpImpl implements IHttp {
     @Override
     public Observable<BaseResponse<ArticleListBean>> cancelCollectInCollectPage(int id, int originId) {
         return mApiService.cancelCollectInCollectPage(id, originId);
+    }
+
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> addTodo(Map<String, Object> map) {
+        return mApiService.addTodo(map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> updateTodo(int id, Map<String, Object> map) {
+        return mApiService.updateTodo(id, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoListBean>> getTodoListData(int page, Map<String, Object> map) {
+        return mApiService.getTodoListData(page, map);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> deleteTodo(int id) {
+        return mApiService.deleteTodo(id);
+    }
+
+    @Override
+    public Observable<BaseResponse<TodoItemBean>> updateTodoStatus(int id, int status) {
+        return mApiService.updateTodoStatus(id, status);
     }
 }
