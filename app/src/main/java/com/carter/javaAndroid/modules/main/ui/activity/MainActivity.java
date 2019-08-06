@@ -11,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -122,7 +123,17 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                     }
                     break;
                 case R.id.nav_item_night_mode:
-                    ToastUtils.showToast(this, menuItem.getItemId() + "");
+
+                    if (mPresenter.isNightMode()) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                        mPresenter.setNightMode(false);
+                        menuItem.setTitle(R.string.nav_day_mode);
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                        mPresenter.setNightMode(true);
+                        menuItem.setTitle(R.string.nav_night_mode);
+                    }
+                    recreate();
                     break;
                 case R.id.nav_item_setting:
                     ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY)

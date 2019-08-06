@@ -54,11 +54,11 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
 
     @Override
     public void setNightMode(boolean isNightMode) {
-
+        mDataManager.setNightMode(isNightMode);
     }
 
     @Override
     public boolean isNightMode() {
-        return false;
+        return mDataManager.isNightMode();
     }
 }
