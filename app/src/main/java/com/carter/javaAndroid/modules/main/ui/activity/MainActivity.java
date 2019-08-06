@@ -125,10 +125,14 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
                     ToastUtils.showToast(this, menuItem.getItemId() + "");
                     break;
                 case R.id.nav_item_setting:
-                    ToastUtils.showToast(this, menuItem.getItemId() + "");
+                    ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY)
+                            .withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_SETTING)
+                            .navigation();
                     break;
                 case R.id.nav_item_about_us:
-                    ToastUtils.showToast(this, menuItem.getItemId() + "");
+                    ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY)
+                            .withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_ABOUT_US)
+                            .navigation();
                     break;
                 case R.id.nav_item_logout:
                     mPresenter.logout();
@@ -303,11 +307,9 @@ public class MainActivity extends BaseActivity<MainActivityPresenter> implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_search:
-                ToastUtils.showToast(this, "搜索页面");
                 ARouter.getInstance().build(ARouterPath.SEARCH_ACTIVITY).navigation();
                 break;
             case R.id.action_usage:
-                ToastUtils.showToast(this, "常用工具");
                 ARouter.getInstance().build(ARouterPath.COMMON_ACTIVITY)
                         .withInt(Constants.TYPE_FRAGMENT_KEY, Constants.TYPE_USEFULSITES)
                         .navigation();

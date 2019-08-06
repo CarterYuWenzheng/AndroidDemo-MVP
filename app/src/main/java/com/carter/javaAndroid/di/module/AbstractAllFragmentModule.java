@@ -6,6 +6,7 @@ import com.carter.javaAndroid.modules.knowledge.ui.KnowledgeFragment;
 import com.carter.javaAndroid.modules.knowledge.ui.KnowledgeListFragment;
 import com.carter.javaAndroid.modules.login.ui.LoginFragment;
 import com.carter.javaAndroid.modules.login.ui.RegisterFragment;
+import com.carter.javaAndroid.modules.main.ui.fragment.AboutFragment;
 import com.carter.javaAndroid.modules.main.ui.fragment.CollectFragment;
 import com.carter.javaAndroid.modules.main.ui.fragment.SearchResultFragment;
 import com.carter.javaAndroid.modules.main.ui.fragment.UsefulSiteFragment;
@@ -60,4 +61,7 @@ public abstract class AbstractAllFragmentModule {
 
     @ContributesAndroidInjector(modules = CollectFragmentModule.class)
     abstract CollectFragment contributesCollectFragmentInject();
+
+    @ContributesAndroidInjector(modules = AboutFragmentModule.class)
+    abstract AboutFragment contributesAboutFragmentInject();
 }
