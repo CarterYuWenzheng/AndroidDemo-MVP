@@ -17,6 +17,14 @@ android {
             }
         }
     }
+
+    sourceSets {
+        main() {
+            jniLibs.srcDirs = ['src/main/libs']
+            jni.srcDirs = [] //屏蔽掉默认的jni编译生成过程
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
