@@ -18,7 +18,10 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory"
         tools:targetApi="p">
-        <activity android:name=".modules.todo.ui.AddTodoActivity"></activity>
+        <activity
+            android:name=".webview.WebActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".modules.todo.ui.AddTodoActivity" />
         <activity android:name=".modules.todo.ui.TodoActivity" />
         <activity android:name=".modules.main.ui.activity.SearchActivity" />
         <activity android:name=".modules.main.ui.activity.CommonActivity" />
